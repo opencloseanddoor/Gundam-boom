@@ -19,22 +19,39 @@ configurations {
 	}
 }
 
-repositories {
+repositories 
+{
 	mavenCentral()
 }
 
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
-	runtimeOnly 'com.mysql:mysql-connector-j'
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+dependencies 
+{
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+	runtimeOnly 'com.mysql:mysql-connector-j' //MYSQL Driver
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Thymeleaf
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf'
+    
+    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0' 
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'  
+    
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    
+    implementation "com.h2database:h2" //불필요한 의존성을 추가해서 구현 함
 }
 
-tasks.named('test') {
+tasks.named('test') 
+{
 	useJUnitPlatform()
 }

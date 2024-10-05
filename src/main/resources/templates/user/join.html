@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko"  xmlns:th="http://www.thymeleaf.org" 
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/default}">
+<body>
+		<section layout:fragment="default-content" class="default-content">
+			<article class="login-page d-flex">
+				<div class="left-area"></div>
+				<div class="center-area">
+					<!-- id를 입력하는 부분 -->
+					<div>
+						<div class="input-group mt-5">
+						  <input id="id-input" type="text" class="form-control" placeholder="Id를 입력해주세요.">
+						</div>
+					</div>
+					<!-- id를 입력하는 부분 -->
+					
+					<!-- password를 입력하는 부분 -->
+					<div>
+						<div class="input-group mt-5">
+						  <input id="password-input" type="password" class="form-control" placeholder="Password를 입력해주세요.">
+						</div>
+					</div>
+					<!-- password를 입력하는 부분 -->
+					
+					<!-- password가 일치하는지 확인을 하기위해 다시 입력하는 부분 -->
+					<div>
+						<div class="input-group mt-5">
+						  <input id="password-recheck" type="password" class="form-control" placeholder="Password를 재입력 해주세요.">
+						</div>
+					</div>
+					<!-- password가 일치하는지 확인을 하기위해 다시 입력하는 부분 -->
+					
+					<!-- 이름을 입력하는 부분 -->
+					<div>
+						<div class="input-group mt-5">
+						  <input id="name-input" type="text" class="form-control" placeholder="이름을 입력해주세요.">
+						</div>
+					</div>
+					<!-- 이름을 입력하는 부분 -->
+					
+					<!-- 주소를 입력하는 부분 -->
+					<div>
+						<div class="input-group mt-5">
+						  <input id="address-input" type="text" class="form-control" placeholder="주소를 입력해주세요.">
+						</div>
+					</div>
+					<!-- 주소를 입력하는 부분 -->
+					
+					<!-- 휴대폰 번호를 입력하는 부분 -->
+					<div>
+						<div class="input-group mt-5">
+						  <input id="phoneNumber-input" type="text" class="form-control" placeholder="휴대폰을 입력해주세요.">
+						</div>
+					</div>
+					<!-- 휴대폰 번호를 입력하는 부분 -->
+					
+					<!-- 서버에게 사용자 정보를 전송 -->
+					<div>
+						<div class="input-group mt-5 d-flex justify-content-center align-items-center">
+						  <button id="join-btn" class="btn btn-success" placeholder="휴대폰을 입력해주세요.">회원가입</button>
+						</div>
+					</div>
+					<!-- 서버에게 사용자 정보를 전송 -->
+					
+				</div>
+				<div class="right-area"></div>				
+			</article>
+		</section>
+	
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+	
+	<script layout:fragment="script">
+		$(document).ready(function()
+		{
+			$("#join-btn").on("click", function()
+			{
+				let id = $("#id-input").val()
+				let password = $("#password-input").val();
+				let passwordRecheck = $("#password-recheck").val();
+				let name = $("#name-input").val();
+				let address = $("#address-input").val();
+				let phoneNumber = $("#phoneNumber-input").val();
+				
+				if(id == "")
+				{
+					alert("id를 입력해주세요.");
+					return;
+				}
+				else if(password == "")
+				{
+					alert("Password를 입력해주세요.");
+					return;
+				}
+				else if(passwordRecheck == "")
+				{
+					alert("Password 확인란을 입력해주세요.");
+					return;
+				}
+				else if(password != passwordRecheck)
+				{
+					alert("패스워드가 일치하지 않습니다.");
+					return;
+				}
+				else if(name == "")
+				{
+					alert("이름을 입력해주세요.");
+					return;
+				}
+				else if(address == "")
+				{
+					alert("주소를 입력해주세요.");
+					return;
+				}
+				else if(phoneNumber == "")
+				{
+					alert("휴대폰 번호를 입력해주세요.");
+					return;
+				}
+				
+				$.ajax
+				({
+					type:"post",
+					url:"/user/join",
+					data:{"loginId":id, "password":password, "name":name, "address":address, "phoneNumber":phoneNumber},
+					success:function(data)
+					{
+						if(data.result == "success")
+						{
+							alert("회원가입 성공");
+						}
+						else
+						{
+							alert("회원가입 실패");
+							return;
+						}
+					}
+					,error:function()
+					{
+						alert("회원가입 에러");
+						return;
+					}
+				});
+			});
+		});
+	</script>
+</body>
+</html>
