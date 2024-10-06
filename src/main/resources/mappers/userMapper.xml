@@ -5,21 +5,22 @@
  
 <mapper namespace="com.gundamBoom.spring.user.repository.UserRepository">
 	<insert id="insertUser" parameterType="map">
-		INSERT INTO `user`
-		(
-			`loginId`,
-			`password`,
-			`name`,
-			`address`,
-			`phoneNumber`
-		)
-		VALUE
-		(
-			#{loginId},
-			#{password},
-			#{name},
-			#{address},
-			#{phoneNumber}
-		)
+		INSERT INTO 
+			`user`
+			(
+				`loginId`,
+				`password`,
+				`name`,
+				`address`,
+				`phoneNumber`
+			)
+			VALUE
+			(
+				#{loginId},
+				#{password},
+				#{name},
+				#{address},
+				#{phoneNumber}
+			)
 	</insert>
 </mapper>
