@@ -4,7 +4,7 @@
         layout:decorate="~{layout/default}">
 <body>
 		<section layout:fragment="default-content" class="default-content">
-			<article class="login-page d-flex">
+			<article class="input-page d-flex">
 				<div class="left-area"></div>
 				<div class="center-area">
 					<!-- id를 입력하는 부분 -->
@@ -43,6 +43,7 @@
 					<div>
 						<div class="input-group mt-5">
 						  <input id="address-input" type="text" class="form-control" placeholder="주소를 입력해주세요.">
+						  <button class="btn btn-success">주소 찾기</button>
 						</div>
 					</div>
 					<!-- 주소를 입력하는 부분 -->
@@ -58,8 +59,12 @@
 					<!-- 서버에게 사용자 정보를 전송 -->
 					<div>
 						<div class="input-group mt-5 d-flex justify-content-center align-items-center">
-						  <button id="join-btn" class="btn btn-success" placeholder="휴대폰을 입력해주세요.">회원가입</button>
+						  <button id="join-btn" class="btn btn-success">회원가입</button>
 						</div>
+					</div>
+					
+					<div class="mt-5 d-flex justify-content-center move-to-login-page">
+						<a href="/user/login-view">로그인</a>						
 					</div>
 					<!-- 서버에게 사용자 정보를 전송 -->
 					

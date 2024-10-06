@@ -35,28 +35,52 @@ header > .move-to-administrator-page
 	height: 100px;
 }
 
-.default-content > .login-page
+.default-content > .input-page
 {
 	width: 1200px;
 	height: 700px;
 }
 
-.default-content > .login-page > .left-area
+.default-content > .input-page > .left-area
 {
 	width: 400px;
 	height: 700px;
 }
 
-.default-content > .login-page > .center-area
+.default-content > .input-page > .center-area
 {
 	width: 400px;
 	height: 700px;
 }
 
-.default-content > .login-page >  .right-area
+.default-content > .input-page > .right-area
 {
 	width: 400px;
 	height: 600px;
+}
+
+.default-content > .input-page > .member-input
+{
+	width: 500px;
+	height: 500px;
+}
+
+.default-content > .input-page > .member-input > .input-area
+{
+	width: 300px;
+	height: 200px;
+}
+
+.default-content > .input-page > .nonmember-input
+{
+	width: 500px;
+	height: 500px;
+}
+
+.default-content > .input-page > .nonmember-input > .non-member-input-area
+{
+	width: 300px;
+	height: 200px;
 }
 
 footer

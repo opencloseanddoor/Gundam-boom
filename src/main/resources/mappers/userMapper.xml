@@ -23,4 +23,17 @@
 				#{phoneNumber}
 			)
 	</insert>
+	
+	<select id="selectUser" parameterType="map">
+		SELECT
+			`loginId`,
+			`password`
+			
+		FROM `user`
+		
+		WHERE 
+			`loginId` = #{loginId}
+		AND 
+			`password` = #{password};
+	</select>
 </mapper>
