@@ -22,4 +22,9 @@ public interface UserRepository
 		@Param("loginId") String loginId,
 		@Param("password") String password
 	);
+	
+	public int selectCountByLoginId
+	(
+		@Param("loginId") String loginId
+	);
 }

@@ -11,7 +11,10 @@
 					<div>
 						<div class="input-group mt-5">
 						  <input id="id-input" type="text" class="form-control" placeholder="Id를 입력해주세요.">
+						  <button id="is-duplicate" class="btn btn-success">중복 확인</button>
 						</div>
+						<div class="small text-danger d-none" id="duplicateText">중복된 id입니다.</div>
+						<div class="samll text-success d-none" id="availableText">사용 가능한 id입니다.</div>
 					</div>
 					<!-- id를 입력하는 부분 -->
 					
@@ -79,6 +82,62 @@
 	<script layout:fragment="script">
 		$(document).ready(function()
 		{
+			// 중복 확인 여부
+			var checkDuplicate = false; //중복확인 버튼을 눌렀는지 확인을 하기위한 전역변수
+			
+			// 중복 여부
+			var isDuplicateId = true; //중복된 id인지 확인을 하기위한 전역변수
+			
+			$("#id-input").on("input", function() //사용자가 키보드로 입력을 하면 본문이 수행이 됩니다
+			{
+				checkDuplicate = false; //중복 확인을 체크하는 변수에 거짓을 대입을 합니다(checkDuplicate는 버튼을 누르지 않은 상태가 됩니다)
+				isDuplicate = true; // 중복 상태 유무를 확인을 하는 변수에 참을 대입(isDuplicate는 중복이 되었다는 상태이다)
+				
+				// 표시가 되는 값을 초기화
+				$("#availableText").addClass("d-none"); // 화면에 표시를 하지 않습니다
+				$("#duplicateText").addClass("d-none"); //화면에 표시를 하지않습니다
+			});
+			
+			$("#is-duplicate").on("click", function()
+			{
+				let id = $("#id-input").val();
+				
+				if(id == "")
+				{
+					alert("아이디를 입력하세요.");
+					return;
+				}
+				
+				$.ajax
+				({
+					type:"get",
+					url:"/user/isDuplicate",
+					data:{"loginId":id},
+					success:function(data)
+					{
+						checkDuplicate = true;
+						isDuplicateId = data.isDuplicate;
+						
+						if(data.isDuplicate)
+						{
+							$("#duplicateText").removeClass("d-none");
+							$("availableText").addClass("d-none");
+						}
+						
+						else
+						{
+							$("#availableText").removeClass("d-none");
+							$("#duplicateText").addClass("d-none");
+						}
+					}
+					,error:function()
+					{
+						alert("중복 확인 중 에러가 발생하였습니다.");
+						return;
+					}
+				});
+			});
+				
 			$("#join-btn").on("click", function()
 			{
 				let id = $("#id-input").val()
@@ -93,6 +152,19 @@
 					alert("id를 입력해주세요.");
 					return;
 				}
+				
+				else if(!checkDuplicate)
+				{
+					alert("아이디 중복확인을 해주세요.");
+					return;
+				}
+				
+				else if(isDuplicate)
+				{
+					alert("아이디가 중복되었습니다.");
+					return;
+				}
+				
 				else if(password == "")
 				{
 					alert("Password를 입력해주세요.");

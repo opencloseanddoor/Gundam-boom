@@ -3,6 +3,7 @@ package com.gundamBoom.spring.user;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -77,6 +78,21 @@ public class UserRestcontroller
 		{
 			resultMap.put("result", "fail");
 		}
+		
+		return resultMap;
+	}
+	
+	@GetMapping("/isDuplicate")
+	public Map<String, Boolean> isDuplicate
+	(
+		@RequestParam("loginId") String loginId
+	)
+	{
+		boolean isDuplicate = userService.isDuplicate(loginId);
+		
+		Map<String, Boolean> resultMap = new HashMap<>();
+		
+		resultMap.put("isDuplicate", isDuplicate);
 		
 		return resultMap;
 	}

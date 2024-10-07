@@ -35,4 +35,18 @@ public class UserService
 	{
 		return userRepository.selectUser(loginId, password);
 	}
+	
+	public boolean isDuplicate(String loginId)
+	{
+		int count = userRepository.selectCountByLoginId(loginId);
+		
+		if(count == 0)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
 }
