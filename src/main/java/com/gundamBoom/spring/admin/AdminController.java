@@ -1,16 +1,16 @@
-package com.gundamBoom.spring.basic;
+package com.gundamBoom.spring.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/basic")
-public class MainPage 
+@RequestMapping("/admin")
+public class AdminController 
 {
-	@GetMapping("/main-view")
-	public String mainPage()
+	@GetMapping("/list-view")
+	public String list()
 	{
-		return "/basic/main";
+		return "admin/adminPage";
 	}
 }

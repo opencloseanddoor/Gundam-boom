@@ -130,6 +130,40 @@ header > .move-to-administrator-page
 	height: 300px;
 }
 
+.default-content > .admin-page
+{
+	width: 1200px;
+}
+
+.admin-page > .search-area
+{
+	width: 1200px;
+	height: 100px;
+}
+
+.search-area > .left-area
+{
+	width: 300px;
+	height: 100px;
+}
+
+.search-area > .input-area
+{
+	width: 600px;
+	height: 100px;
+}
+
+.search-area > .right-area
+{
+	width: 300px;
+	height: 100px;
+}
+
+.default-content > .admin-page > .list-page
+{
+	width: 1200px;
+}
+
 footer
 {
 	height: 100px;
