@@ -71,7 +71,8 @@ public class UserRestcontroller
 			HttpSession session = request.getSession(); //세션의 관한 정보를 받아옵니다
 			
 			session.setAttribute("userId", user.getId()); //세션에 id를 userId라는 이름으로 등록을 합니다, 이 값을 가지고 다른 페이지에서 사용을 합니다
-			session.setAttribute("name", user.getName()); //세션에 사용자 이름을 등록을 합니다
+			session.setAttribute("userName", user.getName()); //세션에 사용자 이름을 등록을 합니다
+			System.out.println(user.getName());
 		}
 		
 		else

@@ -24,10 +24,16 @@
 			)
 	</insert>
 	
-	<select id="selectUser" parameterType="map">
+	<select id="selectUser" parameterType="map" resultType="com.gundamBoom.spring.user.domain.User">
 		SELECT
+			`id`,
 			`loginId`,
-			`password`
+			`password`,
+			`name`,
+			`address`,
+			`phoneNumber`,
+			`createdAt`,
+			`updatedAt`
 			
 		FROM `user`
 		

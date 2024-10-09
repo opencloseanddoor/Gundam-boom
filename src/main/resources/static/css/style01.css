@@ -83,6 +83,53 @@ header > .move-to-administrator-page
 	height: 200px;
 }
 
+.default-content > .navigator
+{
+	width: 1200px;
+	height: 50px;
+}
+
+.default-content > .new-and-top3 /* 신상품과 이 달의 Top3 제품을 표시하기 위한 영역입니다 */
+{
+	width: 1200px;
+	height: 400px;
+}
+
+.default-content > .new-and-top3 > .new-product
+{
+	width: 200px;
+	height: 300px;
+}
+
+.default-content > .new-and-top3 > .top3-product1
+{
+	width: 150px;
+	height: 200px;
+}
+
+.default-content > .new-and-top3 > .top3-product2
+{
+	width: 150px;
+	height: 200px;
+}
+
+.default-content > .new-and-top3 > .top3-product3
+{
+	width: 150px;
+	height: 200px;
+}
+
+.default-content > .products
+{
+	width: 1200px;
+}
+
+.default-content > .products > .product1
+{
+	width: 200px;
+	height: 300px;
+}
+
 footer
 {
 	height: 100px;
