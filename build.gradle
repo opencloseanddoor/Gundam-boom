@@ -49,6 +49,8 @@ dependencies
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     
     implementation "com.h2database:h2" //불필요한 의존성을 추가해서 구현 함
+    
+    
 }
 
 tasks.named('test') 

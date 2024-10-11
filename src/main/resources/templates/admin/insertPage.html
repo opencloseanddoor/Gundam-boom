@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko"  xmlns:th="http://www.thymeleaf.org" 
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/default}">
+	
+	<section layout:fragment="default-content" class="default-content">
+		<div class="base-area">
+			<div class="input-group">
+			  <input type="text" placeholder="제품명을 입력해주세요" class="form-control">
+			</div>
+			
+			<div class="input-group mt-5">
+			  <input type="text" placeholder="가격을 입력해주세요" class="form-control">
+			</div>
+			
+			<div class="input-group mt-5">
+			  <input type="text" placeholder="제조사를 입력해주세요" class="form-control">
+			</div>
+			
+			<div class="input-group mt-5">
+			  <select class="custom-select" id="grade-category">
+			    <option id="null" selected>등급을 선택해주세요.</option>
+			    <option value="1">SD</option>
+			    <option value="2">HG</option>
+			    <option value="3">RG</option>
+			    <option value="4">MG</option>
+			    <option value="5">PG</option>
+			  </select>
+			  <div class="input-group-append">
+			    <label class="input-group-text" for="grade-category">선택</label>
+			  </div>
+			</div>
+			
+			<div class="input-group mt-5">
+			  <select class="custom-select" id="state-category">
+			    <option id="null" selected>분류를 선택해주세요.</option>
+			    <option value="1">신제품</option>
+			    <option value="2">이달의 TOP3</option>
+			    <option value="3">Normal</option>
+			  </select>
+			  <div class="input-group-append">
+			    <label class="input-group-text" for="state-category">선택</label>
+			  </div>
+			</div>
+			
+			<input type="file">
+		</div>
+	</section>
+</html>

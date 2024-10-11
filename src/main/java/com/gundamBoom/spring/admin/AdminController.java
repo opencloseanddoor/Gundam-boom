@@ -13,4 +13,10 @@ public class AdminController
 	{
 		return "admin/adminPage";
 	}
+	
+	@GetMapping("/insert-view")
+	public String insert()
+	{
+		return "admin/insertPage";
+	}
 }

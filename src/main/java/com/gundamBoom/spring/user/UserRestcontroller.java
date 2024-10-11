@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/user")
+//@Validated
 public class UserRestcontroller 
 {
 	private UserService userService;
@@ -29,11 +30,11 @@ public class UserRestcontroller
 	@PostMapping("/join")
 	public Map<String, String> join
 	(
-		@RequestParam("loginId") String loginId,
+		/*@Size(min=4, max=16, massage="아이디 길이를 확인하세요")*/@RequestParam("loginId") String loginId,
 		@RequestParam("password") String password,
 		@RequestParam("name") String name,
 		@RequestParam("address") String address,
-		@RequestParam("phoneNumber") String phoneNumber
+		/*@Email(massage="이메일 형식이 맞지않습니다")*/ @RequestParam("phoneNumber") String phoneNumber
 	)
 	{
 		int count = userService.addUser(loginId, password, name, address, phoneNumber);

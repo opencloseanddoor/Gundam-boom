@@ -164,6 +164,13 @@ header > .move-to-administrator-page
 	width: 1200px;
 }
 
+.default-content > .base-area
+{
+	width: 600px;
+	height: 700px;
+	margin: 0 auto;
+}
+
 footer
 {
 	height: 100px;

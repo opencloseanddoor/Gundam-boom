@@ -60,8 +60,19 @@
 			</div>
 			
 			<div class="add-button">
-				<button type="button" class="btn btn-success">추가</button>
+				<button type="button" id="add-btn" class="btn btn-success">추가</button>
 			</div>
 		</div>
 	</section>
+	
+	<script layout:fragment="script">
+		$(document).ready(function()
+		{
+			$("#add-btn").on("click", function()
+			{
+				location.href="/admin/insert-view";
+			});
+		});
+	</script>
+	
 </html>
