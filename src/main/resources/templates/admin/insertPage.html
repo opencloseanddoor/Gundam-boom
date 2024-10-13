@@ -3,47 +3,127 @@
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorate="~{layout/default}">
 	
-	<section layout:fragment="default-content" class="default-content">
-		<div class="base-area">
+	<section layout:fragment="default-content" class="mt-5 default-content border border-dark">
+		<div class="base-area mt-5">
 			<div class="input-group">
-			  <input type="text" placeholder="제품명을 입력해주세요" class="form-control">
+			  <input type="text" placeholder="제품명을 입력해주세요" id="product-name-id" class="form-control">
 			</div>
 			
 			<div class="input-group mt-5">
-			  <input type="text" placeholder="가격을 입력해주세요" class="form-control">
+			  <input type="text" placeholder="가격을 입력해주세요" id="product-price-id" class="form-control">
 			</div>
 			
 			<div class="input-group mt-5">
-			  <input type="text" placeholder="제조사를 입력해주세요" class="form-control">
+			  <input type="text" placeholder="제조사를 입력해주세요" id="menufacturer-id" class="form-control">
 			</div>
 			
 			<div class="input-group mt-5">
-			  <select class="custom-select" id="grade-category">
+			  <select class="custom-select" id="grade-category-id">
 			    <option id="null" selected>등급을 선택해주세요.</option>
-			    <option value="1">SD</option>
-			    <option value="2">HG</option>
-			    <option value="3">RG</option>
-			    <option value="4">MG</option>
-			    <option value="5">PG</option>
+			    <option value="SD">SD</option>
+			    <option value="HG">HG</option>
+			    <option value="RG">RG</option>
+			    <option value="MG">MG</option>
+			    <option value="PG">PG</option>
 			  </select>
-			  <div class="input-group-append">
-			    <label class="input-group-text" for="grade-category">선택</label>
-			  </div>
 			</div>
 			
 			<div class="input-group mt-5">
-			  <select class="custom-select" id="state-category">
-			    <option id="null" selected>분류를 선택해주세요.</option>
-			    <option value="1">신제품</option>
-			    <option value="2">이달의 TOP3</option>
-			    <option value="3">Normal</option>
+			  <select class="custom-select" id="state-category-id">
+			    <option id="null" selected>상품을 분류해주세요.</option>
+			    <option value="신제품">신제품</option>
+			    <option value="이달의 TOP3">이달의 TOP3</option>
+			    <option value="Normal">Normal</option>
 			  </select>
-			  <div class="input-group-append">
-			    <label class="input-group-text" for="state-category">선택</label>
-			  </div>
 			</div>
 			
-			<input type="file">
+			<label class="mt-5 text-danger" for="image-input">상품 사진을 입력해주세요(필수)<br><input id="image-input" class="mt-2 text-dark" type="file"></label>
+			
+			<div class="product-insert-btn d-flex justify-content-end">
+				<button id="input-btn" class="mt-5 btn btn-success">상품 추가</button>
+			</div>
 		</div>
 	</section>
+	
+	<script layout:fragment="script">
+		$(document).ready(function()
+		{
+			$("#input-btn").on("click", function()
+			{
+				let productName = $("#product-name-id").val();
+				let price = $("#product-price-id").val();
+				let menufacturer = $("#menufacturer-id").val();
+				let grade = $("#grade-category-id").val();
+				let state = $("#state-category-id").val();
+				let image = $("#image-input")[0].files[0];
+				
+				if(productName == "")
+				{
+					alert("관리자님 상품명을 입력해주세요~");
+					return;
+				}
+				else if(price == "")
+				{
+					alert("관리자님 상품의 가격을 입력해주세요~");
+					return;
+				}
+				else if(menufacturer == "")
+				{
+					alert("관리자님 상품의 제조사를 입력해주세요~");
+					return;
+				}
+				else if(grade == "등급을 선택해주세요.")
+				{
+					alert("관리자님 상품의 등급을 입력해주세요~");
+					return;
+				}
+				else if(state == "상품을 분류해주세요.")
+				{
+					alert("관리자님 상품을 분류해주세요~");
+					return;
+				}
+				else if(image == null)
+				{
+					alert("관리자님 상품의 이미지를 입력해주세요.");
+					return;
+				}
+				
+				let formData = new FormData();
+				
+				formData.append("name", productName);
+				formData.append("menufacturer", menufacturer);
+				formData.append("price", price);
+				formData.append("imagePath", image);
+				formData.append("category",grade);
+				formData.append("division", state);
+				
+				$.ajax
+				({
+					type:"post",
+					url:"/admin/add",
+					data:formData,
+					enctype:"multipart/form-data",
+					processData:false,
+					contentType:false,
+					success:function(data)
+					{
+						if(data.result == "success")
+						{
+							location.reload();
+						}
+						else
+						{
+							alert("상품 추가 실패");
+							return;
+						}
+					}
+					,error:function()
+					{
+						alert("상품 추가 에러");
+						return;
+					}
+				});
+			});
+		});
+	</script>
 </html>
