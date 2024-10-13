@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Builder
 @Getter
-public class CardView 
+public class ProductView 
 {
 	private String name;
 	

@@ -14,74 +14,31 @@
 			</ul>
 		</nav>
 		
-		<article class="new-and-top3 d-flex align-items-center justify-content-between border border-dark">
-			<div class="new-product ml-5">
-				<img width="200px" height="250px" src="https://pics2.gundamboom.kr/web/product/small/137737001688448040_4477.JPG">
+		<article class="new-and-top3 d-flex align-items-center justify-content-between border border-dark" th:each="product:${productViewList}">
+			<div class="new-product ml-5" th:if="${product.division == '신제품'}">
+				<img width="200px" height="250px" th:src="${product.imagePath}">
 				<div class="new-product-name-input-area d-flex justify-content-center">
-					<div class="new-product-name small">
+					<div class="new-product-name small mt-1" th:text="${product.name}">
 						[MG]뉴 건담 Ver.ka
 					</div>
 				</div>
+				<div class="new-product-price-area mt-2 d-flex justify-content-center">
+					<div class="small" th:text="|${product.price}원|"></div>
+				</div>
 			</div>
 			
-			<div class="top3-product1 ml-5 mr-5">
+			<!-- <div class="top3-product1 ml-5 mr-5">
 				<img width="150px" height="150px" src="https://cafe24.poxo.com/ec01/figurepresso89/BhNwo1jckXH28PSBZRxpvrRNVBIPVsjIZXgklj2fzlwtz4XBkYsUeuG/tl2zOxkvgioVJTtBnfs8EcuagkLTXA==/_/web/product/big/201801/9673_shop1_552907.jpg">
 				<div class="product-name">[메탈빌드] 아스트레아 TYPE-F</div>
-			</div>
-			
-			<div class="top3-product2 ml-5 mr-5">
-				<img width="150px" height="150px" src="https://cafe24.poxo.com/ec01/figurepresso89/BhNwo1jckXH28PSBZRxpvrRNVBIPVsjIZXgklj2fzlwtz4XBkYsUeuG/tl2zOxkvgioVJTtBnfs8EcuagkLTXA==/_/web/product/big/201801/9673_shop1_552907.jpg">
-				<div class="product-name">[메탈빌드] 아스트레아 TYPE-F</div>
-			</div>
-			
-			<div class="top3-product3 ml-5 mr-5">
-				<img width="150px" height="150px" src="https://cafe24.poxo.com/ec01/figurepresso89/BhNwo1jckXH28PSBZRxpvrRNVBIPVsjIZXgklj2fzlwtz4XBkYsUeuG/tl2zOxkvgioVJTtBnfs8EcuagkLTXA==/_/web/product/big/201801/9673_shop1_552907.jpg">
-				<div class="product-name">[메탈빌드] 아스트레아 TYPE-F</div>
-			</div>
-			
+			</div> -->
 		</article>
 		
-		<div class="products d-flex flex-wrap">
-			<div class="product1 ml-5 mr-5 mt-5">
-				<img width="150px" height="150px" src="https://cafe24.poxo.com/ec01/figurepresso89/BhNwo1jckXH28PSBZRxpvrRNVBIPVsjIZXgklj2fzlwtz4XBkYsUeuG/tl2zOxkvgioVJTtBnfs8EcuagkLTXA==/_/web/product/big/201801/9673_shop1_552907.jpg">
-				<div class="product-name">[메탈빌드] 아스트레아 TYPE-F</div>
-			</div>	
-			
-			<div class="product1 ml-5 mr-5 mt-5">
-				<img width="150px" height="150px" src="https://cafe24.poxo.com/ec01/figurepresso89/BhNwo1jckXH28PSBZRxpvrRNVBIPVsjIZXgklj2fzlwtz4XBkYsUeuG/tl2zOxkvgioVJTtBnfs8EcuagkLTXA==/_/web/product/big/201801/9673_shop1_552907.jpg">
-				<div class="product-name">[메탈빌드] 아스트레아 TYPE-F</div>
-			</div>	
-			
-			<div class="product1 ml-5 mr-5 mt-5">
-				<img width="150px" height="150px" src="https://cafe24.poxo.com/ec01/figurepresso89/BhNwo1jckXH28PSBZRxpvrRNVBIPVsjIZXgklj2fzlwtz4XBkYsUeuG/tl2zOxkvgioVJTtBnfs8EcuagkLTXA==/_/web/product/big/201801/9673_shop1_552907.jpg">
-				<div class="product-name">[메탈빌드] 아스트레아 TYPE-F</div>
-			</div>	
-			
-			<div class="product1 ml-5 mr-5 mt-5">
-				<img width="150px" height="150px" src="https://cafe24.poxo.com/ec01/figurepresso89/BhNwo1jckXH28PSBZRxpvrRNVBIPVsjIZXgklj2fzlwtz4XBkYsUeuG/tl2zOxkvgioVJTtBnfs8EcuagkLTXA==/_/web/product/big/201801/9673_shop1_552907.jpg">
-				<div class="product-name">[메탈빌드] 아스트레아 TYPE-F</div>
-			</div>	
-			
-			<div class="product1 ml-5 mr-5 mt-5">
-				<img width="150px" height="150px" src="https://cafe24.poxo.com/ec01/figurepresso89/BhNwo1jckXH28PSBZRxpvrRNVBIPVsjIZXgklj2fzlwtz4XBkYsUeuG/tl2zOxkvgioVJTtBnfs8EcuagkLTXA==/_/web/product/big/201801/9673_shop1_552907.jpg">
-				<div class="product-name">[메탈빌드] 아스트레아 TYPE-F</div>
-			</div>	
-			
-			<div class="product1 ml-5 mr-5 mt-5">
-				<img width="150px" height="150px" src="https://cafe24.poxo.com/ec01/figurepresso89/BhNwo1jckXH28PSBZRxpvrRNVBIPVsjIZXgklj2fzlwtz4XBkYsUeuG/tl2zOxkvgioVJTtBnfs8EcuagkLTXA==/_/web/product/big/201801/9673_shop1_552907.jpg">
-				<div class="product-name">[메탈빌드] 아스트레아 TYPE-F</div>
-			</div>	
-			
-			<div class="product1 ml-5 mr-5 mt-5">
-				<img width="150px" height="150px" src="https://cafe24.poxo.com/ec01/figurepresso89/BhNwo1jckXH28PSBZRxpvrRNVBIPVsjIZXgklj2fzlwtz4XBkYsUeuG/tl2zOxkvgioVJTtBnfs8EcuagkLTXA==/_/web/product/big/201801/9673_shop1_552907.jpg">
-				<div class="product-name">[메탈빌드] 아스트레아 TYPE-F</div>
-			</div>	
-			
-			<div class="product1 ml-5 mr-5 mt-5">
-				<img width="150px" height="150px" src="https://cafe24.poxo.com/ec01/figurepresso89/BhNwo1jckXH28PSBZRxpvrRNVBIPVsjIZXgklj2fzlwtz4XBkYsUeuG/tl2zOxkvgioVJTtBnfs8EcuagkLTXA==/_/web/product/big/201801/9673_shop1_552907.jpg">
-				<div class="product-name">[메탈빌드] 아스트레아 TYPE-F</div>
-			</div>			
+		<div class="products d-flex flex-wrap" th:each="product:${productViewList}">
+			<div class="product1 ml-5 mr-5 mt-5" th:if="${product.division != '신제품' && product.division != '이달의 TOP3'}">
+				<img width="150px" height="150px" th:src="${product.imagePath}">
+				<div class="product-name" th:text="${product.name}">[메탈빌드] 아스트레아 TYPE-F</div>
+				<div class="product-price small mt-2" th:text="|${product.price}원|">70000원</div>
+			</div>
 		</div>
-		
 	</section>	
 </html>

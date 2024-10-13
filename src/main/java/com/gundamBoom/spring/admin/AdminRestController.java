@@ -31,12 +31,12 @@ public class AdminRestController
 		@RequestParam("name") String name,
 		@RequestParam("menufacturer") String menufacturer,
 		@RequestParam("price") String price,
-		@RequestParam("imagePath") MultipartFile imagePath,
+		@RequestParam("imageFile") MultipartFile imageFile,
 		@RequestParam("category") String category,
 		@RequestParam("division") String division
 	)
 	{
-		Product product = adminService.insertProduct(name, menufacturer, price, imagePath, category, division);
+		Product product = adminService.insertProduct(name, menufacturer, price, imageFile, category, division);
 		
 		Map<String, String> resultMap = new HashMap<>();
 		

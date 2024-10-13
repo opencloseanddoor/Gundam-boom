@@ -21,7 +21,7 @@ public class FileManager
 			return null;
 		}
 		
-		String directoryName = "/" + "_" + System.currentTimeMillis(); // 디렉터리의 이름을 /_(1/1000)을 기준으로 한다
+		String directoryName = "/" + "상품" + "_" + System.currentTimeMillis(); // 디렉터리의 이름을 /_(1/1000)을 기준으로 한다
 		
 		// 디렉터리의 경로를 설정합니다
 		String directoryPath = FILE_UPLOAD_PATH + directoryName;
