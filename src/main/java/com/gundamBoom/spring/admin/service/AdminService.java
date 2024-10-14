@@ -29,12 +29,12 @@ public class AdminService
 		String name,
 		String menufacturer,
 		String price, 
-		MultipartFile imagePath,
+		MultipartFile imageFile,
 		String category,
 		String division
 	)
 	{
-		String urlPath = FileManager.saveFile(imagePath);
+		String urlPath = FileManager.saveFile(imageFile);
 		
 		Product product = Product
 				.builder()

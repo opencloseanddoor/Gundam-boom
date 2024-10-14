@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileManager 
 {
 	// 업로드 경로를 지정하기 위한 전역 변수 선언
-	public static final String FILE_UPLOAD_PATH = "D:\\ahn_sung_min\\spring_project\\upload";
+	public static final String FILE_UPLOAD_PATH = "X:\\Spring_project\\Gundam_boom_project\\upload";
 	
 	// 파일 저장
 	public static String saveFile(MultipartFile file)
@@ -48,6 +48,6 @@ public class FileManager
 			return null;
 		}
 		
-		return "/images" + directoryName + "/" + file.getOriginalFilename(); // /(upload + directoryName)/fileName을 반환합니다
+		return "/images" + directoryName + "/" + file.getOriginalFilename(); // /(upload + /directoryName)/fileName을 반환합니다
 	}
 }
