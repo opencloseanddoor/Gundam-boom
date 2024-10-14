@@ -34,7 +34,7 @@ public class AdminService
 		String division
 	)
 	{
-		String urlPath = FileManager.savaFile(imagePath);
+		String urlPath = FileManager.saveFile(imagePath);
 		
 		Product product = Product
 				.builder()
@@ -52,7 +52,7 @@ public class AdminService
 	}
 	
 	public List<ProductView> getProductList()
-	{
+	{		
 		List<Product> productList = adminRepository.findAllByOrderByIdDesc();
 		
 		List<ProductView> productViewList = new ArrayList<>();
@@ -67,8 +67,6 @@ public class AdminService
 					.category(product.getCategory())
 					.division(product.getDivision())
 					.build();
-			
-			System.out.println("사진 이미지 : " + product.getImagePath());
 			
 			productViewList.add(cardView);
 		}

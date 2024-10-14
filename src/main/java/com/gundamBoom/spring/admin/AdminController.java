@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.gundamBoom.spring.admin.dto.ProductView;
 import com.gundamBoom.spring.admin.service.AdminService;
 
-import jakarta.servlet.http.HttpSession;
-
 @Controller
 @RequestMapping("/admin")
 public class AdminController 
@@ -35,11 +33,10 @@ public class AdminController
 		return "admin/insertPage";
 	}
 	
-	@GetMapping("/mainPage")
+	@GetMapping("/mainPage-view")
 	public String main
 	(
-		Model model,
-		HttpSession session
+		Model model
 	)
 	{
 		List<ProductView> productViewList = adminService.getProductList();

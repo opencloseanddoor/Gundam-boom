@@ -19,6 +19,7 @@
         <h4>이달의 신제품과 TOP3</h4>
         <div class="d-flex flex-wrap justify-content-between border border-dark">
             <div class="d-flex align-items-center mt-4">
+            
                 <!-- 신제품 표시 -->
                 <div class="new-products d-flex" th:each="product : ${productViewList}" th:if="${product.division == '신제품'}">
                     <div class="new-product ml-5">
@@ -32,7 +33,7 @@
                             <div class="small" th:text="|${product.price}원|"></div>
                         </div>
                     </div>
-                </div>
+                </div> 
                 
                 <!-- 이달의 TOP3 표시 -->
                 <div class="top3-products d-flex" th:each="product : ${productViewList}" th:if="${product.division == '이달의 TOP3'}">
