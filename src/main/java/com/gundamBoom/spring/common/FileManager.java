@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileManager 
 {
 	// 업로드 경로를 지정하기 위한 전역 변수 선언
-	public static final String FILE_UPLOAD_PATH = "X:\\Spring_project\\Gundam_boom_project\\upload";
+	public static final String FILE_UPLOAD_PATH = "X:\\Spring_project\\Gundam_boom_project\\upload\\char_s_counter_attack";
 	
 	// 파일 저장
 	public static String savaFile(MultipartFile file)
@@ -21,7 +21,7 @@ public class FileManager
 			return null;
 		}
 		
-		String directoryName = "/" + "상품" + "_" + System.currentTimeMillis(); // 디렉터리의 이름을 /_(1/1000)을 기준으로 한다
+		String directoryName = "/" + "product" + "_" + System.currentTimeMillis(); // 디렉터리의 이름을 /_(1/1000)을 기준으로 한다
 		
 		// 디렉터리의 경로를 설정합니다
 		String directoryPath = FILE_UPLOAD_PATH + directoryName;
@@ -48,6 +48,6 @@ public class FileManager
 			return null;
 		}
 		
-		return "/images" + directoryName + "/" + file.getOriginalFilename(); // /(images + directoryName)/fileName을 반환합니다
+		return "/image" + directoryName + "/" + file.getOriginalFilename(); // /(upload + directoryName)/fileName을 반환합니다
 	}
 }

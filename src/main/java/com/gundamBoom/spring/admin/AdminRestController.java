@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.gundamBoom.spring.admin.domain.Product;
 import com.gundamBoom.spring.admin.service.AdminService;
 
-import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/admin")

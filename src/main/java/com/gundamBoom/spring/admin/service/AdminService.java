@@ -28,7 +28,7 @@ public class AdminService
 	(
 		String name,
 		String menufacturer,
-		String price,
+		String price, 
 		MultipartFile imagePath,
 		String category,
 		String division
@@ -55,7 +55,7 @@ public class AdminService
 	{
 		List<Product> productList = adminRepository.findAllByOrderByIdDesc();
 		
-		List<ProductView> cardViewList = new ArrayList<>();
+		List<ProductView> productViewList = new ArrayList<>();
 		
 		for(Product product : productList)
 		{
@@ -70,9 +70,9 @@ public class AdminService
 			
 			System.out.println("사진 이미지 : " + product.getImagePath());
 			
-			cardViewList.add(cardView);
+			productViewList.add(cardView);
 		}
 		
-		return cardViewList;
+		return productViewList;
 	}
 }

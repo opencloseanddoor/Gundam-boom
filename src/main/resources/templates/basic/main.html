@@ -1,44 +1,60 @@
 <!DOCTYPE html>
-<html lang="ko"  xmlns:th="http://www.thymeleaf.org" 
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout/default}">
-	
-	<section layout:fragment="default-content" class="default-content">
-		<nav class="navigator d-flex align-items-center bg-secondary">
-			<ul class="nav d-flex justify-content-between w-100 m-5">
-				<li class="nav-item"><a class="nav-link text-white" href="https://www.google.com">SD</a></li>
-				<li class="nav-item"><a class="nav-link text-white" href="https://www.google.com">HG</a></li>
-				<li class="nav-item"><a class="nav-link text-white" href="https://www.google.com">RG</a></li>
-				<li class="nav-item"><a class="nav-link text-white" href="https://www.google.com">MG</a></li>
-				<li class="nav-item"><a class="nav-link text-white" href="https://www.google.com">PG</a></li>				
-			</ul>
-		</nav>
-		
-		<article class="new-and-top3 d-flex align-items-center justify-content-between border border-dark" th:each="product:${productViewList}">
-			<div class="new-product ml-5" th:if="${product.division == '신제품'}">
-				<img width="200px" height="250px" th:src="${product.imagePath}">
-				<div class="new-product-name-input-area d-flex justify-content-center">
-					<div class="new-product-name small mt-1" th:text="${product.name}">
-						[MG]뉴 건담 Ver.ka
-					</div>
-				</div>
-				<div class="new-product-price-area mt-2 d-flex justify-content-center">
-					<div class="small" th:text="|${product.price}원|"></div>
-				</div>
-			</div>
-			
-			<!-- <div class="top3-product1 ml-5 mr-5">
-				<img width="150px" height="150px" src="https://cafe24.poxo.com/ec01/figurepresso89/BhNwo1jckXH28PSBZRxpvrRNVBIPVsjIZXgklj2fzlwtz4XBkYsUeuG/tl2zOxkvgioVJTtBnfs8EcuagkLTXA==/_/web/product/big/201801/9673_shop1_552907.jpg">
-				<div class="product-name">[메탈빌드] 아스트레아 TYPE-F</div>
-			</div> -->
-		</article>
-		
-		<div class="products d-flex flex-wrap" th:each="product:${productViewList}">
-			<div class="product1 ml-5 mr-5 mt-5" th:if="${product.division != '신제품' && product.division != '이달의 TOP3'}">
-				<img width="150px" height="150px" th:src="${product.imagePath}">
-				<div class="product-name" th:text="${product.name}">[메탈빌드] 아스트레아 TYPE-F</div>
-				<div class="product-price small mt-2" th:text="|${product.price}원|">70000원</div>
-			</div>
-		</div>
-	</section>	
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+
+<section layout:fragment="default-content" class="default-content">
+    <nav class="navigator d-flex align-items-center bg-secondary">
+        <ul class="nav d-flex justify-content-between w-100 m-5">
+            <li class="nav-item"><a class="nav-link text-white" href="https://www.google.com">SD</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="https://www.google.com">HG</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="https://www.google.com">RG</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="https://www.google.com">MG</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="https://www.google.com">PG</a></li>                
+        </ul>
+    </nav>
+
+    <!-- 이달의 신제품과 TOP3를 같은 행에 나란히 표시 -->
+    <div class="new-and-top3-products-section mt-5">
+        <h4>이달의 신제품과 TOP3</h4>
+        <div class="d-flex flex-wrap justify-content-between border border-dark">
+            <div class="d-flex align-items-center mt-4">
+                <!-- 신제품 표시 -->
+                <div class="new-products d-flex" th:each="product : ${productViewList}" th:if="${product.division == '신제품'}">
+                    <div class="new-product ml-5">
+                        <img width="200px" height="250px" th:src="${product.imagePath}" alt="신제품 이미지입니다.">
+                        <div class="new-product-name-input-area d-flex justify-content-center">
+                            <div class="new-product-name small mt-1" th:text="${product.name}">
+                                [MG]뉴 건담 Ver.ka
+                            </div>
+                        </div>
+                        <div class="new-product-price-area mt-2 d-flex justify-content-center">
+                            <div class="small" th:text="|${product.price}원|"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 이달의 TOP3 표시 -->
+                <div class="top3-products d-flex" th:each="product : ${productViewList}" th:if="${product.division == '이달의 TOP3'}">
+                    <div class="top3-product ml-5 mr-5">
+                        <img width="150px" height="150px" th:src="${product.imagePath}" alt="상품 사진입니다.">
+                        <div class="product-name" th:text="${product.name}">[메탈빌드] 아스트레아 TYPE-F</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 일반 제품 섹션 -->
+    <div class="products-section mt-5">
+        <h4>일반 제품</h4>
+        <div class="d-flex flex-wrap" th:each="product : ${productViewList}" th:if="${product.division == 'Normal'}">
+            <div class="product ml-5 mr-5 mt-5">
+                <img width="150px" height="150px" th:src="${product.imagePath}">
+                <div class="product-name mt-2" th:text="${product.name}">[메탈빌드] 아스트레아 TYPE-F</div>
+                <div class="product-price small mt-2 d-flex justify-content-center" th:text="|${product.price}원|">70000원</div>
+            </div>
+        </div>
+    </div>
+</section>    
 </html>
