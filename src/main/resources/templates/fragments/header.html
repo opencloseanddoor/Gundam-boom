@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-	<header class="d-flex">
-				<div class="logo d-flex justify-content-center align-items-center">
-					<a href="/admin/mainPage-view"><img src="https://pics2.gundamboom.kr/image/sub/16035236181925.gif" alt="건담붐 이미지입니다" height="80"></a>
-				</div>
+	<header>
+		<div class="d-flex justify-content-between">
+			<div class="logo d-flex justify-content-start align-items-center">
+				<a href="/admin/mainPage-view"><img src="https://pics2.gundamboom.kr/image/sub/16035236181925.gif" alt="건담붐 이미지입니다" height="80"></a>
+			</div>
 				
-				<div th:if="${session.userId != null}" class="d-flex search justify-content-center align-items-center">
-					<div class="input-group mb-3">
-					  <input type="text" class="form-control" placeholder="상품 정보를 입력해주세요.">
-					  <div class="input-group-append">
-					    <button class="btn btn-primary" type="button">검색</button>
-					  </div>
-					</div>
+			<div th:if="${session.userId != null}" class="d-flex search justify-content-center align-items-center">
+				<div class="input-group mb-3">
+				  <input type="text" class="form-control" placeholder="상품 정보를 입력해주세요.">
+				  <div class="input-group-append">
+				    <button class="btn btn-primary" type="button">검색</button>
+				  </div>
 				</div>
+			</div>
 				
-				<div class="d-flex align-items-center">
-					<div th:if="${session.userId != null}" class="ml-4 d-none user-name display-6 d-flex">
-						<span th:text="${session.userName}">
-							My name
-						</span>
-					</div>
-					
-					<div th:if="${session.userId != null && session.loginId == 'asm2007'}" class="ml-4 d-none move-to-administrator-page d-flex">
-						<a href="/admin/list-view">관리자 페이지</a>
-					</div>
-					
-					<div th:if="${session.userId != null}" class="ml-4 d-none display-6 logout d-flex">
-						<a href="/user/logout" >로그아웃</a>
-					</div>
+			<div class="d-flex align-items-center">
+				<div th:if="${session.userId != null}" class="ml-3 d-none user-name display-6 d-flex">
+					<span th:text="${session.userName}">
+						My name
+					</span>
 				</div>
+					
+				<div th:if="${session.userId != null && session.loginId == 'asm2007'}" class="ml-3 d-none move-to-administrator-page d-flex">
+					<a href="/admin/list-view">관리자 페이지</a>
+				</div>
+					
+				<div th:if="${session.userId != null}" class="ml-3 d-none display-6 logout d-flex">
+					<a href="/user/logout" >로그아웃</a>
+				</div>
+			</div>
+		</div>	
+			
+		<div class="navigator-area">
+			<nav class="navigator d-flex align-items-center bg-secondary">
+				<ul class="nav d-flex justify-content-between w-100 m-5">
+					<li class="nav-item"><a class="nav-link text-white" href="/admin/category-view">SD</a></li>
+					<li class="nav-item"><a class="nav-link text-white" href="/admin/category-view">HG</a></li>
+					<li class="nav-item"><a class="nav-link text-white" href="/admin/category-view">RG</a></li>
+					<li class="nav-item"><a class="nav-link text-white" href="/admin/category-view">MG</a></li>
+					<li class="nav-item"><a class="nav-link text-white" href="/admin/category-view">PG</a></li>              
+				</ul>
+			</nav>
+		</div>
 	</header>
 </html>

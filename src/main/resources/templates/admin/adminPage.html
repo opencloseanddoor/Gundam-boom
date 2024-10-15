@@ -31,10 +31,10 @@
 					</thead>
 					<tbody>
 					
-						<tr>
-							<td><img width="100px" height="100px" src="https://pics2.gundamboom.kr/web/product/small/137737001688448040_4477.JPG"></td>
-							<td>[MG] 뉴건담Ver.ka</td>
-							<td>60000원</td>
+						<tr th:each="products : ${productViewList}">
+							<td><img width="100px" height="100px" th:src="${products.imagePath}"></td>
+							<td th:text="${products.name}">[MG] 뉴건담Ver.ka</td>
+							<td th:text="${products.price}">60000원</td>
 						</tr>
 						
 					</tbody>

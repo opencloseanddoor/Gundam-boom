@@ -1,5 +1,6 @@
 package com.gundamBoom.spring.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -9,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gundamBoom.spring.admin.dto.ProductView;
 import com.gundamBoom.spring.admin.service.AdminService;
-
-import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/admin")
@@ -24,8 +23,15 @@ public class AdminController
 	}
 	
 	@GetMapping("/list-view")
-	public String list()
+	public String list
+	(
+		Model model
+	)
 	{
+		List<ProductView> productViewList = adminService.getProductList();
+		
+		model.addAttribute("productViewList", productViewList);
+		
 		return "admin/adminPage";
 	}
 	
@@ -46,5 +52,18 @@ public class AdminController
 		model.addAttribute("productViewList", productViewList);
 		
 		return "basic/main";
+	}
+	
+	@GetMapping("/category-view")
+	public String categoryPg
+	(
+		Model model
+	)
+	{
+		List<ProductView> productViewList = adminService.getProductList();
+		
+		model.addAttribute("productViewList", productViewList);
+		
+		return "basic/category";
 	}
 }

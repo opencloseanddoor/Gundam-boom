@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+      
+      <section layout:fragment="default-content" class="default-content">
+	    
+	    <div class="category-area mt-5" th:each="products : ${productsViewList}">
+	    	<div class="products" th:if="${products.category == 'PG'}">
+	    	
+	    		<div class="image-area d-flex justify-content-center">
+	    			<img class="mt-4" width="200px" height="200px" th:src="${products.imagePath}">
+	    		</div>
+	    			    
+	    		<div class="name-area d-flex justify-content-center mt-2"></div>
+	    	
+	    		<div class="price-area d-flex justify-content-center mt-2"></div>			
+	    	</div>
+	    </div>
+      </section>
+</html>
