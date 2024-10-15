@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.gundamBoom.spring.admin.dto.ProductView;
 import com.gundamBoom.spring.admin.service.AdminService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController 

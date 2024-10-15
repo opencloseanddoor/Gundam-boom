@@ -119,15 +119,15 @@ header > .move-to-administrator-page
 	height: 200px;
 }
 
-.default-content > .products
+.default-content > .products-section
 {
 	width: 1200px;
 }
 
-.default-content > .products > .product1
+.products-section > .product
 {
-	width: 200px;
-	height: 300px;
+	width: 400px;
+	height: 400px;
 }
 
 .default-content > .admin-page
