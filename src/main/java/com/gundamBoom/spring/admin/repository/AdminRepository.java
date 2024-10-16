@@ -10,4 +10,6 @@ public interface AdminRepository extends JpaRepository<Product, Integer>
 {
 	// SELECT * FROM `product` ORDER 
 	public List<Product> findAllByOrderByIdDesc();
+	
+	public List<Product> findAllByCategoryOrderByIdDesc(String category);
 }

@@ -73,4 +73,28 @@ public class AdminService
 		
 		return productViewList;
 	}
+	
+	
+	public List<ProductView> getProductListByCategory(String category)
+	{		
+		List<Product> productList = adminRepository.findAllByCategoryOrderByIdDesc(category);
+		
+		List<ProductView> productViewList = new ArrayList<>();
+		
+		for(Product product : productList)
+		{
+			ProductView cardView = ProductView.builder()
+					.name(product.getName())
+					.menufacturer(product.getMenufacturer())
+					.price(product.getPrice())
+					.imagePath(product.getImagePath())
+					.category(product.getCategory())
+					.division(product.getDivision())
+					.build();
+			
+			productViewList.add(cardView);
+		}
+		
+		return productViewList;
+	}
 }

@@ -180,7 +180,6 @@ header > .move-to-administrator-page
 .default-content > .category-area /* 카테고리를 표시하기위한 영역*/
 {
 	width: 1200px;
-	height: 600px;
 }
 
 .category-area > .products
