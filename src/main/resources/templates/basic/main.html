@@ -41,7 +41,7 @@
                         </div>
                         
                         <div class="top3-product-price-area d-flex justify-content-center mt-2">
-                        	<div class="small text-dark" th:text="${product.price}"></div>
+                        	<div class="small text-dark" th:text="|${product.price}원|"></div>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
 	{
 		$("#new-img").on("click", function()
 		{
-			
+			alert("hello");
 		});
 	});
 </script>

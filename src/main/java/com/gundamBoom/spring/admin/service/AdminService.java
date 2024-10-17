@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gundamBoom.spring.admin.domain.Product;
@@ -114,5 +115,32 @@ public class AdminService
 		{
 			return false;
 		}
+	}
+	
+	public Product updateProduct
+	(
+			String name,
+			String menufacturer,
+			String price, 
+			MultipartFile imageFile,
+			String category,
+			String division
+	)
+	{
+		String urlPath = FileManager.saveFile(imageFile);
+		
+		Product product = Product
+		.builder()
+		.name(name)
+		.menufacturer(menufacturer)
+		.price(price)
+		.imagePath(urlPath)
+		.category(category)
+		.division(division)
+		.build();
+		
+		Product result = adminRepository.save(product);
+		
+		return result;
 	}
 }

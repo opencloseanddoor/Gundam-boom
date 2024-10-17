@@ -51,7 +51,7 @@ public class AdminRestController
 		return resultMap;
 	}
 	
-	@PostMapping("delete")
+	@PostMapping("/delete")
 	public Map<String, String> deleteProduct
 	(
 		@RequestParam("productId") int productId
@@ -60,6 +60,32 @@ public class AdminRestController
 		Map<String, String> resultMap = new HashMap<>();
 		
 		if(adminService.delete(productId))
+		{
+			resultMap.put("result", "success");
+		}
+		else
+		{
+			resultMap.put("result", "fail");
+		}
+		return resultMap;
+	}
+	
+	@PostMapping("/modifyProduct")
+	public Map<String, String> modify
+	(
+		@RequestParam("name") String name,
+		@RequestParam("menufacturer") String menufacturer,
+		@RequestParam("price") String price,
+		@RequestParam("imageFile") MultipartFile imageFile,
+		@RequestParam("category") String category,
+		@RequestParam("division") String division
+	)
+	{
+		Product product = adminService.insertProduct(name, menufacturer, price, imageFile, category, division);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(product != null)
 		{
 			resultMap.put("result", "success");
 		}
