@@ -1,6 +1,7 @@
 package com.gundamBoom.spring.admin.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,4 +13,6 @@ public interface AdminRepository extends JpaRepository<Product, Integer>
 	public List<Product> findAllByOrderByIdDesc();
 	
 	public List<Product> findAllByCategoryOrderByIdDesc(String category);
+	
+	public Optional<Product> findById(int productId);
 }

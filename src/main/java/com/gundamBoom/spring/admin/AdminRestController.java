@@ -50,4 +50,23 @@ public class AdminRestController
 		
 		return resultMap;
 	}
+	
+	@PostMapping("delete")
+	public Map<String, String> deleteProduct
+	(
+		@RequestParam("productId") int productId
+	)
+	{
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(adminService.delete(productId))
+		{
+			resultMap.put("result", "success");
+		}
+		else
+		{
+			resultMap.put("result", "fail");
+		}
+		return resultMap;
+	}
 }

@@ -7,6 +7,8 @@ import lombok.Getter;
 @Getter
 public class ProductView 
 {
+	private int productId; 
+	
 	private String name;
 	
 	private String menufacturer;

@@ -7,7 +7,6 @@
 	    
 	    <div class="category-area mt-5 d-flex flex-wrap">
 	    	<div class="products d-flex" th:each="products : ${productViewList}" th:if="${products.category}">
-	    	
 	    		<div class="ml-3 mr-3 image-area d-flex justify-content-center">
 	    			<img class="mt-4" width="200px" height="200px" th:src="${products.imagePath}">
 	    		</div>

@@ -2,6 +2,7 @@ package com.gundamBoom.spring.admin.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -60,6 +61,7 @@ public class AdminService
 		for(Product product : productList)
 		{
 			ProductView cardView = ProductView.builder()
+					.productId(product.getId())
 					.name(product.getName())
 					.menufacturer(product.getMenufacturer())
 					.price(product.getPrice())
@@ -73,7 +75,6 @@ public class AdminService
 		
 		return productViewList;
 	}
-	
 	
 	public List<ProductView> getProductListByCategory(String category)
 	{		
@@ -96,5 +97,22 @@ public class AdminService
 		}
 		
 		return productViewList;
+	}
+	
+	public boolean delete(int productId)
+	{
+		Optional<Product> optionalProduct = adminRepository.findById(productId);
+		Product product = optionalProduct.orElse(null);
+		
+		if(product != null)
+		{
+			FileManager.removeFile(product.getImagePath());
+			adminRepository.delete(product);
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
 	}
 }

@@ -27,6 +27,7 @@
 							<th>상품 이미지</th>
 							<th>상품 이름</th>
 							<th>상품 가격</th>
+							<th>삭제</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -35,6 +36,8 @@
 							<td><img width="100px" height="100px" th:src="${products.imagePath}"></td>
 							<td th:text="${products.name}">[MG] 뉴건담Ver.ka</td>
 							<td th:text="${products.price}">60000원</td>
+							<td><button th:data-id="${products.productId}" class="delete-btn btn btn-success">삭제</button></td>
+							<td th:text="${products.productId}"></td> 
 						</tr>
 						
 					</tbody>
@@ -54,6 +57,34 @@
 			$("#add-btn").on("click", function()
 			{
 				location.href="/admin/insert-view";
+			});
+			
+			$(".delete-btn").on("click", function()
+			{
+				let productId = $(this).data("id");
+				
+				$.ajax
+				({
+					type:"post",
+					url:"/admin/delete",
+					data:{"productId":productId},
+					success:function(data)
+					{
+						if(data.result == "success")
+						{
+							alert("삭제 성공");
+							location.reload();
+						}
+						else
+						{
+							alert("삭제 실패");
+						}
+					}
+					,error:function()
+					{
+						alert("삭제 에러");
+					}
+				});
 			});
 		});
 	</script>
