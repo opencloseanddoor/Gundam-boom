@@ -188,6 +188,36 @@ header > .move-to-administrator-page
 	height: 300px;
 }
 
+.default-content > .image-area /* 상품의 이미지를 표시하기 위한 영역 */
+{
+	width: 600px;
+	height: 600px;
+}
+
+.image-area > .image
+{
+	width: 400px;
+	height: 400px;
+}
+
+.default-content > .info-area /* 상품의 정보를 표기하기 위한 영역 */
+{
+	width: 600px;
+	height: 600px;
+}
+
+.info-area > .info
+{
+	width: 500px;
+	height: 400px;
+}
+
+.info > .btns
+{
+	height:100px;
+	width:500px;
+}
+
 footer
 {
 	height: 100px;

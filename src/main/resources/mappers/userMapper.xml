@@ -39,8 +39,11 @@
 		
 		WHERE 
 			`loginId` = #{loginId}
-		AND 
-			`password` = #{password};
+			
+		<if test="password != null">
+			AND	`password` = #{password};
+		</if>
+		
 	</select>
 	
 	<select id="selectCountByLoginId" parameterType="String" resultType="int">

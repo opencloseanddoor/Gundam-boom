@@ -1,4 +1,4 @@
-package com.gundamBoom.spring.admin;
+package com.gundamBoom.spring.basic;
 
 import java.util.List;
 
@@ -11,22 +11,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.gundamBoom.spring.admin.dto.ProductView;
 import com.gundamBoom.spring.admin.service.AdminService;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-
 @Controller
-@RequestMapping("/admin")
-public class AdminController 
-{
+@RequestMapping("/basic")
+public class BasicController 
+{	
 	private AdminService adminService;
 	
-	public AdminController(AdminService adminService)
+	public BasicController
+	(
+		AdminService adminService
+	)
+		
 	{
 		this.adminService = adminService;
 	}
 	
-	@GetMapping("/list-view")
-	public String list
+	@GetMapping("/mainPage-view")
+	public String main
 	(
 		Model model
 	)
@@ -35,27 +36,31 @@ public class AdminController
 		
 		model.addAttribute("productViewList", productViewList);
 		
-		return "admin/adminPage";
+		return "basic/main";
 	}
 	
-	@GetMapping("/insert-view")
-	public String insert()
-	{
-		return "admin/insertPage";
-	}
-	
-	@GetMapping("/modify-view/{productId}")
-	public String modify
+	@GetMapping("/category-view/{category}")
+	public String category
 	(
-		@PathVariable("productId") int productId,
-		HttpServletRequest request,
+		@PathVariable("category") String category,
 		Model model
 	)
 	{
-		HttpSession session = request.getSession();
+		List<ProductView> productViewList = adminService.getProductListByCategory(category);
 		
-		session.setAttribute("productId", productId);
+		model.addAttribute("productViewList", productViewList);
 		
-		return "admin/modify";
+		return "basic/category";
+	}
+	
+	@GetMapping("/purchase-view/{productId}")
+	public String productPurchase
+	(
+		@PathVariable("productId") int productId,
+		Model model
+	)
+	{
+		
+		return "basic/purchase";
 	}
 }
