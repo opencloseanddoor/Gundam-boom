@@ -5,25 +5,28 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gundamBoom.spring.admin.domain.Product;
 import com.gundamBoom.spring.admin.dto.ProductView;
 import com.gundamBoom.spring.admin.repository.AdminRepository;
+import com.gundamBoom.spring.admin.repository.ProductRepository;
 import com.gundamBoom.spring.common.FileManager;
 
 @Service
 public class AdminService 
 {
 	private AdminRepository adminRepository;
+	private ProductRepository productRepository;
 	
 	public AdminService
 	(
-		AdminRepository adminRepository
+		AdminRepository adminRepository,
+		ProductRepository productRepository
 	)
 	{
 		this.adminRepository = adminRepository;
+		this.productRepository = productRepository;
 	}
 	
 	public Product insertProduct
@@ -117,8 +120,9 @@ public class AdminService
 		}
 	}
 	
-	public Product updateProduct
+	public boolean updateProduct
 	(
+			int productId,
 			String name,
 			String menufacturer,
 			String price, 
@@ -127,20 +131,15 @@ public class AdminService
 			String division
 	)
 	{
-		String urlPath = FileManager.saveFile(imageFile);
+		int count = productRepository.productUpdate(productId, name, menufacturer, price, imageFile, category, division);
 		
-		Product product = Product
-		.builder()
-		.name(name)
-		.menufacturer(menufacturer)
-		.price(price)
-		.imagePath(urlPath)
-		.category(category)
-		.division(division)
-		.build();
-		
-		Product result = adminRepository.save(product);
-		
-		return result;
+		if(count == 1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }

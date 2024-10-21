@@ -5,7 +5,13 @@
         
         <section layout:fragment="default-content" class="default-content">
         	<div class="base-area mt-5">
-				<div class="input-group">
+        	
+        		<div class="product-id-area display-4">
+        			<label>상품 ID: </label>
+        			<span id="product-id" th:text="${session.productId}"></span>
+        		</div>       		
+        		
+				<div class="input-group mt-4">
 				  <input type="text" placeholder="제품명을 입력해주세요" id="product-name-id" class="form-control">
 				</div>
 				
@@ -40,7 +46,7 @@
 				<label class="mt-5 text-danger" for="image-input">상품 사진을 입력해주세요(필수)<br><input id="image-input" class="mt-2 text-dark" type="file"></label>
 				
 				<div class="product-insert-btn d-flex justify-content-end">
-					<button id="update-btn" class="mt-5 btn btn-primary">상품 수정</button>
+					<button id="update-btn" th:data-id="${session.productId}" class="mt-5 btn btn-primary">상품 수정</button>
 				</div>
 			</div>
         </section>
@@ -50,14 +56,15 @@
         	{
 				$("#update-btn").on("click", function()
 				{
-					let productName = $("#product-name-id").val();
+					let productId = $(this).data("id");
+					let name = $("#product-name-id").val();
 					let price = $("#product-price-id").val();
 					let menufacturer = $("#menufacturer-id").val();
 					let grade_category = $("#grade-category-id").val();
 					let state_category = $("#state-category-id").val();
 					let image = $("#image-input")[0].files[0];
 					
-					if(productName == "")
+					if(name == "")
 					{
 						alert("관리자님 갱신하실 제품의 이름을 입력해주세요~");
 						return;
@@ -95,12 +102,13 @@
 					
 					let formData = new FormData();
 					
-					formData.append("name", productName);
-					formData.append("price", price);
+					formData.append("productId", productId);
+					formData.append("name", name);
 					formData.append("menufacturer", menufacturer);
+					formData.append("price", price);
+					formData.append("imageFile", image);
 					formData.append("category", grade_category);
 					formData.append("division", state_category);
-					formData.append("imageFile", image);
 					
 					$.ajax
 					({
@@ -124,7 +132,7 @@
 						}
 						,error:function()
 						{
-							alert("갱신 실패");
+							alert("갱신 에러");
 						}
 					});
 					

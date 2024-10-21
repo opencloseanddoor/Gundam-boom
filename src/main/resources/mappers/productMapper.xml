@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gundamBoom.spring.admin.repository.ProductRepository">
+
+	<update id="productUpdate" parameterType="com.gundamBoom.spring.admin.dto.ProductView">
+		UPDATE `product` 
+			SET
+				`productId` = #{productId},
+				`name` = #{name},
+				`menufacturer` = #{menufacturer}, 
+				`price` = #{price},
+				`imagePath` = #{imagePath},
+				`category` = #{category},
+				`division` = #{division}
+			
+		WHERE `productId` = #{productId}
+		
+	</update>
+</mapper>

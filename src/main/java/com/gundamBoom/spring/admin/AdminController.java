@@ -12,6 +12,7 @@ import com.gundamBoom.spring.admin.dto.ProductView;
 import com.gundamBoom.spring.admin.service.AdminService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/admin")
@@ -78,6 +79,9 @@ public class AdminController
 		Model model
 	)
 	{
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("productId", productId);
 		
 		return "admin/modify";
 	}

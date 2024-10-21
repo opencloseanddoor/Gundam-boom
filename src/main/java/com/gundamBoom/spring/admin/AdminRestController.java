@@ -73,6 +73,7 @@ public class AdminRestController
 	@PostMapping("/modifyProduct")
 	public Map<String, String> modify
 	(
+		@RequestParam("productId") int productId,
 		@RequestParam("name") String name,
 		@RequestParam("menufacturer") String menufacturer,
 		@RequestParam("price") String price,
@@ -81,11 +82,11 @@ public class AdminRestController
 		@RequestParam("division") String division
 	)
 	{
-		Product product = adminService.insertProduct(name, menufacturer, price, imageFile, category, division);
+		boolean isHaving = adminService.updateProduct(productId, name, menufacturer, price, imageFile, category, division);
 		
 		Map<String, String> resultMap = new HashMap<>();
 		
-		if(product != null)
+		if(isHaving == true)
 		{
 			resultMap.put("result", "success");
 		}
@@ -93,6 +94,7 @@ public class AdminRestController
 		{
 			resultMap.put("result", "fail");
 		}
+		
 		return resultMap;
 	}
 }
