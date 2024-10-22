@@ -18,7 +18,7 @@
                         <img id="new-img" th:data-id="${product.productId}" width="200px" height="250px" th:src="${product.imagePath}" alt="신제품 이미지입니다.">
                         
                         <div class="new-product-name-input-area d-flex justify-content-center">
-                            <div class="new-product-name small mt-1" th:text="${product.name}">
+                            <div th:data-id="${product.productId}" class="new-product-name small mt-1" th:text="${product.name}">
                                 [MG]뉴 건담 Ver.ka
                             </div>
                         </div>
@@ -33,15 +33,15 @@
                     <div class="top3-product ml-5 mr-5">
                     
                     	<div class="img-space d-flex justify-content-center">
-                    		<img width="150px" height="150px" th:src="${product.imagePath}" alt="상품 사진입니다.">
+                    		<img class="top-3-img ml-5" th:data-id="${product.productId}" width="150px" height="150px" th:src="${product.imagePath}" alt="상품 사진입니다.">
                     	</div>
                     	
                         <div class="name-spaces d-flex justify-content-center mt-2">
-                        	<div class="product-name" th:text="${product.name}">[메탈빌드] 아스트레아 TYPE-F</div>
+                        	<div th:data-id="${product.productId}" class="top-3-product-name ml-5" th:text="${product.name}">[메탈빌드] 아스트레아 TYPE-F</div>
                         </div>
                         
                         <div class="top3-product-price-area d-flex justify-content-center mt-2">
-                        	<div class="small text-dark" th:text="|${product.price}원|"></div>
+                        	<div class="small text-dark ml-5" th:text="|${product.price}원|"></div>
                         </div>
                     </div>
                 </div>
@@ -57,11 +57,11 @@
             <div class="mr-3 mt-3">
             
             	<div class="img-space d-flex justify-content-center">
-            		<img class="mt-3" width="150px" height="150px" th:src="${product.imagePath}">
+            		<img th:data-id="${product.productId}" class="mt-3 product-img" width="150px" height="150px" th:src="${product.imagePath}">
             	</div>
                 
                 <div class="name-space d-flex justify-content-center">
-                	<div class="product-name mt-2" th:text="${product.name}">[메탈빌드] 아스트레아 TYPE-F</div>
+                	<div th:data-id="${product.productId}" class="product-name mt-2" th:text="${product.name}">[메탈빌드] 아스트레아 TYPE-F</div>
                 </div>
                 
                 <div class="product-price small mt-2 d-flex justify-content-center" th:text="|${product.price}원|">70000원</div>
@@ -76,9 +76,39 @@
 		$("#new-img").on("click", function()
 		{
 			let productId = $(this).data("id");
-			let name
 			location.href="/basic/purchase-view/" + productId;
 		});
+		
+		$(".new-product-name").on("click", function()
+		{
+			let productId = $(this).data("id");
+			location.href="/basic/purchase-view/" + productId;
+		});
+		
+		$(".top-3-img").on("click", function()
+		{
+			let productId = $(this).data("id");
+			location.href="/basic/purchase-view/" + productId;
+		});
+		
+		$(".top-3-product-name").on("click", function()
+		{
+			let productId = $(this).data("id");
+			location.href="/basic/purchase-view/" + productId;
+		});
+		
+		$(".product-img").on("click", function()
+		{
+			let productId = $(this).data("id");
+			location.href="/basic/purchase-view/" + productId;
+		});
+		
+		$(".product-name").on("click", function()
+		{
+			let productId = $(this).data("id");
+			location.href="/basic/purchase-view/" + productId;
+		});
+		
 	});
 </script>
 </html>

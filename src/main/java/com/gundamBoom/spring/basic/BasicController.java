@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gundamBoom.spring.admin.domain.Product;
 import com.gundamBoom.spring.admin.dto.ProductView;
 import com.gundamBoom.spring.admin.service.AdminService;
 
@@ -60,6 +61,9 @@ public class BasicController
 		Model model
 	)
 	{
+		Product product = adminService.getProduct(productId);
+		model.addAttribute("product", product);
+		
 		return "basic/purchase";
 	}
 }

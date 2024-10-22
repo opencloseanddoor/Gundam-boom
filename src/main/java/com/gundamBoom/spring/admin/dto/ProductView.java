@@ -1,7 +1,5 @@
 package com.gundamBoom.spring.admin.dto;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.Builder;
 import lombok.Getter;
 

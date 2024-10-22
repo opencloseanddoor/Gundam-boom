@@ -13,6 +13,4 @@ public interface AdminRepository extends JpaRepository<Product, Integer>
 	public List<Product> findAllByOrderByIdDesc();
 	
 	public List<Product> findAllByCategoryOrderByIdDesc(String category);
-	
-	public Optional<Product> findById(int productId);
 }

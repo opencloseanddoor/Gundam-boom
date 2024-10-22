@@ -89,6 +89,7 @@ public class AdminService
 		for(Product product : productList)
 		{
 			ProductView cardView = ProductView.builder()
+					.productId(product.getId())
 					.name(product.getName())
 					.menufacturer(product.getMenufacturer())
 					.price(product.getPrice())
@@ -137,9 +138,20 @@ public class AdminService
 		{
 			return true;
 		}
+		
 		else
 		{
 			return false;
 		}
 	}
+	
+	public Product getProduct(int productId)
+	{
+		Optional<Product> optionalProduct = adminRepository.findById(productId);
+		
+		Product product = optionalProduct.orElse(null);
+		
+		return product;		
+	}
+	
 }
