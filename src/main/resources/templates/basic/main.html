@@ -15,7 +15,7 @@
                 <div class="new-products" th:each="product : ${productViewList}" th:if="${product.division == '신제품'}">
                     <div class="new-product ml-5">
                     
-                        <img id="new-img" width="200px" height="250px" th:src="${product.imagePath}" alt="신제품 이미지입니다.">
+                        <img id="new-img" th:data-id="${product.productId}" width="200px" height="250px" th:src="${product.imagePath}" alt="신제품 이미지입니다.">
                         
                         <div class="new-product-name-input-area d-flex justify-content-center">
                             <div class="new-product-name small mt-1" th:text="${product.name}">
@@ -75,7 +75,9 @@
 	{
 		$("#new-img").on("click", function()
 		{
-			location.href="/basic/purchase-view";
+			let productId = $(this).data("id");
+			let name
+			location.href="/basic/purchase-view/" + productId;
 		});
 	});
 </script>

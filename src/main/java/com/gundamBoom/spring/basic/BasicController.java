@@ -60,7 +60,6 @@ public class BasicController
 		Model model
 	)
 	{
-		
 		return "basic/purchase";
 	}
 }
