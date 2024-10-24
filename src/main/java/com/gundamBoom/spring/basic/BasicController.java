@@ -11,19 +11,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.gundamBoom.spring.admin.domain.Product;
 import com.gundamBoom.spring.admin.dto.ProductView;
 import com.gundamBoom.spring.admin.service.AdminService;
+import com.gundamBoom.spring.user.service.UserService;
 
 @Controller
 @RequestMapping("/basic")
 public class BasicController 
 {	
+	private UserService userService;
 	private AdminService adminService;
 	
 	public BasicController
 	(
+		UserService userService,
 		AdminService adminService
 	)
 		
 	{
+		this.userService = userService;
 		this.adminService = adminService;
 	}
 	
@@ -65,5 +69,11 @@ public class BasicController
 		model.addAttribute("product", product);
 		
 		return "basic/purchase";
+	}
+	
+	@GetMapping("/orderPage-view")
+	public String userOrder()
+	{
+		return "basic/orderPage";
 	}
 }

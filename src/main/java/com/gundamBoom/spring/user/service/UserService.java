@@ -36,6 +36,12 @@ public class UserService
 		return userRepository.selectUser(loginId, password);
 	}
 	
+	//Overloading
+	public User searchUser(String loginId)
+	{
+		return userRepository.selectUser(loginId);
+	}
+	
 	public boolean isDuplicate(String loginId)
 	{
 		int count = userRepository.selectCountByLoginId(loginId);

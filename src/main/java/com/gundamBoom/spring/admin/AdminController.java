@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gundamBoom.spring.admin.domain.Product;
 import com.gundamBoom.spring.admin.dto.ProductView;
 import com.gundamBoom.spring.admin.service.AdminService;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/admin")
@@ -48,14 +48,13 @@ public class AdminController
 	public String modify
 	(
 		@PathVariable("productId") int productId,
-		HttpServletRequest request,
 		Model model
 	)
 	{
-		HttpSession session = request.getSession();
+		Product product = adminService.getProduct(productId);
 		
-		session.setAttribute("productId", productId);
-		
+		model.addAttribute(product);
+			
 		return "admin/modify";
 	}
 }

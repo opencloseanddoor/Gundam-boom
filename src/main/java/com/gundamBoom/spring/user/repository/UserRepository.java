@@ -27,4 +27,7 @@ public interface UserRepository
 	(
 		@Param("loginId") String loginId
 	);
+	
+	//Overloading
+	public User selectUser( @Param("userId") String userId );
 }

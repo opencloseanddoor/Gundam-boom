@@ -35,6 +35,8 @@ public class UserProduct
 	@Column(name="phoneNumber")
 	private String phoneNumber;
 	private String address;
+	@Column(name="paymentNumber")
+	private String paymentNumber;
 	@CreationTimestamp
 	@Column(name="createdAt")
 	private LocalDateTime createdAt;
