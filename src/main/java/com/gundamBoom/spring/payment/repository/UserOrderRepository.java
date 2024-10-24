@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.gundamBoom.spring.payment.domain.UserProduct;
 
-public interface ProductRepository extends JpaRepository<UserProduct, Integer> 
+public interface UserOrderRepository extends JpaRepository<UserProduct, Integer> 
 {	
 
 }
