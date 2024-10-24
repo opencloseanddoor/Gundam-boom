@@ -1,4 +1,4 @@
-package com.gundamBoom.spring.config;
+package com.gundamBoom.spring.payment;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
