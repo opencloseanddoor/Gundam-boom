@@ -41,6 +41,7 @@
 					<button type="button" class="ml-4 btn btn-success">장바구니</button>
 					<button type="button" class="ml-4 btn btn-danger">찜하기</button>
 				</div>
+				<h5 id="loginId" th:text="${session.loginId}"></h5>
 			</div>
 			
 		</article>
@@ -51,6 +52,11 @@
 		{
 			$("#buy-btn").on("click", function()
 			{
+				/*
+					아래의 코드들은 주문 기능을 작성을 할 때 참고해야합니다 삭제하지 말아주세요.
+					let loginId = $("#loginId").text();
+					alert(loginId);
+				*/
 				location.href="/basic/orderPage-view";
 			});
 		});
