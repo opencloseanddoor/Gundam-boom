@@ -1,4 +1,4 @@
-package com.gundamBoom.spring.payment.domain;
+package com.gundamBoom.spring.buy.domain;
 
 import java.time.LocalDateTime;
 
@@ -30,16 +30,23 @@ public class UserProduct
 	
 	@Column(name="userId")
 	private int userId;
+	
 	private String status;
+	
 	private String name;
+	
 	@Column(name="phoneNumber")
 	private String phoneNumber;
+	
 	private String address;
+	
 	@Column(name="paymentNumber")
 	private String paymentNumber;
+	
 	@CreationTimestamp
 	@Column(name="createdAt")
 	private LocalDateTime createdAt;
+	
 	@UpdateTimestamp
 	@Column(name="updatedAt")
 	private LocalDateTime updatedAt;

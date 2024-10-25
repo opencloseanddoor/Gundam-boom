@@ -1,10 +1,10 @@
-package com.gundamBoom.spring.payment.repository;
+package com.gundamBoom.spring.buy.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.gundamBoom.spring.payment.domain.UserProduct;
+import com.gundamBoom.spring.buy.domain.UserProduct;
 
 public interface UserOrderRepository extends JpaRepository<UserProduct, Integer> 
 {	
-
+	
 }

@@ -1,4 +1,4 @@
-package com.gundamBoom.spring.payment.apiKeyConfig;
+package com.gundamBoom.spring.buy.apiKeyConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

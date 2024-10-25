@@ -1,4 +1,4 @@
-package com.gundamBoom.spring.payment.domain;
+package com.gundamBoom.spring.buy.domain;
 
 import java.time.LocalDateTime;
 

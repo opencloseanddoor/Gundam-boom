@@ -57,23 +57,4 @@ public class BasicController
 		
 		return "basic/category";
 	}
-	
-	@GetMapping("/purchase-view/{productId}")
-	public String productPurchase
-	(
-		@PathVariable("productId") int productId,
-		Model model
-	)
-	{
-		Product product = adminService.getProduct(productId);
-		model.addAttribute("product", product);
-		
-		return "basic/purchase";
-	}
-	
-	@GetMapping("/orderPage-view")
-	public String userOrder()
-	{
-		return "basic/orderPage";
-	}
 }
