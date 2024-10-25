@@ -9,7 +9,7 @@ import com.siot.IamportRestClient.IamportClient;
 public class ApiKey 
 {
 	String apiKey = "4834561586802810";
-	String secretKey = "WHHsBtobBEFHLbV41tLEVyH2HywyTjlSV577Oy7NYYcfkYfjoNSvtLPxzkZ0IiDeQDI72jPFF1QiAlDN";
+	String secretKey = ""; // seceret key를 그대로 깃허브 서버에 전송을 해서 secre key를 재발급 받아서 이전에 사용을 하던 seceret key는 삭제했습니다
 	
 	@Bean
 	public IamportClient iamportClient()
