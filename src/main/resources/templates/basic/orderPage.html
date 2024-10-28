@@ -4,6 +4,7 @@
       layout:decorate="~{layout/default}">
       
       <section layout:fragment="default-content" class="default-content">
+      
       	<div class="user-info-input-area d-flex">
       		<div class="left-pading"></div>
       		<div class="center-pading d-flex">
@@ -35,7 +36,7 @@
       		<div class="right-pading"></div>
       	</div>
       	<div class="btn-area d-flex justify-content-center">
-      		<button type="button" id="buy-btn" class="btn btn-success">구매하기</button>
+      		<button type="button" id="buy-btn" th:data-id="${productId}" class="btn btn-success">구매하기</button>
       	</div>
       	
       </section>
@@ -43,11 +44,17 @@
       <script layout:fragment="script">
       	$(document).ready(function()
       	{
+      		const IMP = window.IMP;
+            IMP.init('imp00065124'); // 아임포트 키 입력
+            
       		$("#buy-btn").on("click", function()
       		{
+      			let loginId = "";
       			let name = $("#name-input").val();
       			let address = $("#address-input").val();
       			let phoneNumber = $("#phoneNumber-input").val();
+      			let status = "결제중";
+      			let productId = $(this).data("id");
       			
       			if(name == "")
       			{
@@ -67,6 +74,27 @@
       				return;
       			}
       			
+      			$.ajax
+      			({
+					type:"post",
+					url:"/buy/purchaseDelivery",
+					data:{"name":name, "address":address, "phoneNumber":phoneNumber, "status":status, "productId":productId},
+					success:function(data)
+					{
+						if(data.result == "success")
+						{
+							alert("배송정보 저장 성공");
+						}
+						else
+						{
+							alert("배송정보 저장 실패");
+						}
+					}
+					,error:function()
+					{
+						alert("배송정보 저장 에러");
+					}
+      			})
       		});
       	});
       </script>

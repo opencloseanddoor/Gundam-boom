@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gundamBoom.spring.buy.domain.ProductList;
 import com.gundamBoom.spring.buy.domain.UserProduct;
 import com.gundamBoom.spring.buy.service.BuyService;
-import com.gundamBoom.spring.user.domain.User;
 import com.gundamBoom.spring.user.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/buy")
@@ -33,23 +35,30 @@ public class BuyRestController
 	@PostMapping("/purchaseDelivery")
 	public Map<String, String> userPurchaseDelivery
 	(
-		@RequestParam("loginId") String loginId,
 		@RequestParam("name") String name,
 		@RequestParam("address") String address,
 		@RequestParam("phoneNumber") String phoneNumber,
-		@RequestParam("status") String status
+		@RequestParam("status") String status,
+		@RequestParam("productId") int productId,
+		HttpSession session
 	)
 	{
 		Map<String, String> resultMap = new HashMap<>();
 		
-		User user =  userService.searchUser(loginId);
-		int userId = user.getId();
-		UserProduct userProduct = buyService.selectUser(userId, name, address, phoneNumber, status);
+		int userId = (Integer)session.getAttribute("userId");
 		
-		if(userProduct != null)
+		UserProduct userProduct = buyService.insertUser(userId, name, address, phoneNumber, status);
+		
+		int userProductId = userProduct.getId();
+		int count = 1;
+		
+		ProductList productList = buyService.insertProductList(userProductId, productId, count);
+				
+		if(userProduct != null && productList != null)
 		{
 			resultMap.put("result", "success");
 		}
+		
 		else
 		{
 			resultMap.put("result", "fail");

@@ -40,9 +40,6 @@ public class UserProduct
 	
 	private String address;
 	
-	@Column(name="paymentNumber")
-	private String paymentNumber;
-	
 	@CreationTimestamp
 	@Column(name="createdAt")
 	private LocalDateTime createdAt;

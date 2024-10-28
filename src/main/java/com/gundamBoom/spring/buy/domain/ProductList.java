@@ -21,9 +21,9 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="userProductList")
+@Table(name="productList")
 @Entity
-public class UserProductList 
+public class ProductList 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
