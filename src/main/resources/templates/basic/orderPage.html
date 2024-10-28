@@ -36,7 +36,7 @@
       		<div class="right-pading"></div>
       	</div>
       	<div class="btn-area d-flex justify-content-center">
-      		<button type="button" id="buy-btn" th:data-id="${productId}" class="btn btn-success">구매하기</button>
+      		<button type="button" id="buy-btn" th:data-id="${productId}" class="btn btn-success">받는사람 정보 저장</button>
       	</div>
       	
       </section>
@@ -84,6 +84,7 @@
 						if(data.result == "success")
 						{
 							alert("배송정보 저장 성공");
+							location.href="/buy/importBuy/" + productId;
 						}
 						else
 						{

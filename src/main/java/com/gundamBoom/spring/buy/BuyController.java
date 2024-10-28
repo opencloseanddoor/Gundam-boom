@@ -44,4 +44,16 @@ public class BuyController
 		
 		return "basic/orderPage";
 	}
+	
+	@GetMapping("/importBuy/{productId}")
+	public String importBuy
+	(
+		@PathVariable("productId") int productId,
+		Model model
+	)
+	{
+		model.addAttribute("productId", productId);
+		
+		return "basic/importBuy";
+	}
 }

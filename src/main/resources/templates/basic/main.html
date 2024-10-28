@@ -80,45 +80,6 @@
 			location.href="/buy/purchase-view/" + productId;
 		});
 		
-		// 아래의 주석 처리한 코드는 나중에 참고하기 위한 코드이므로 삭제하지 말아주세요.
-		/* const IMP = window.IMP;
-        IMP.init('imp00065124'); // 아임포트 키 입력
-
-        // 신제품 클릭 이벤트
-        $(".new-product img, .new-product-name").on("click", function() 
-        {
-            let productId = $(this).data("id");
-            let productPrice = 10000; // 가격을 가져오는 로직 추가
-            let productName = '건담'; // 이름을 가져오는 로직 추가
-
-            IMP.request_pay
-            ({
-                pg: 'html5_inicis', // PG사
-                pay_method: 'card', // 결제 방법
-                merchant_uid: 'order_id_' + new Date().getTime(), // 주문 ID
-                amount: productPrice, // 결제 금액
-                name: productName, // 주문명
-                buyer_name: '구매자 이름', // 구매자 이름
-                buyer_tel: '010-1234-5678', // 구매자 전화번호
-                buyer_email: 'buyer@example.com', // 구매자 이메일
-            }
-            ,
-            function(rsp) 
-            {
-                if (rsp.success) 
-                {
-                    alert('결제가 완료되었습니다.');
-                    // 결제 성공 시 처리할 로직 추가
-                } 
-                
-                else 
-                {
-                    alert('결제 실패: ' + rsp.error_msg);
-                    // 결제 실패 시 처리할 로직 추가
-                }
-            });
-        }); */
-		
 		$(".new-product-name").on("click", function()
 		{
 			let productId = $(this).data("id");

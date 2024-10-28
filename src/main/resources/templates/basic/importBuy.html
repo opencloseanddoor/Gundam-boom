@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+      
+      <section layout:fragment="default-content" class="default-content">
+      	<div th:text="${productId}"></div>
+      </section>
+      
+      <script layout:fragment="script">
+      	$(document).ready(function()
+      	{
+      		const IMP = window.IMP;
+            IMP.init('imp00065124'); // 아임포트 키 입력
+            
+            let productId = $(this).data("id");
+            let productPrice = 1; // 가격을 가져오는 로직 추가
+            let productName = '건담'; // 이름을 가져오는 로직 추가
+
+            IMP.request_pay
+            ({
+                pg: 'html5_inicis', // PG사
+                pay_method: 'card', // 결제 방법
+                merchant_uid: 'order_id_' + new Date().getTime(), // 주문 ID
+                amount: productPrice, // 결제 금액
+                name: productName, // 주문명
+                buyer_name: '구매자 이름', // 구매자 이름
+                buyer_tel: '010-1234-5678', // 구매자 전화번호
+                buyer_email: 'buyer@example.com', // 구매자 이메일
+            }
+            ,
+            function(rsp) 
+            {
+                if (rsp.success) 
+                {
+                    alert('결제가 완료되었습니다.');
+                    // 결제 성공 시 처리할 로직 추가
+                } 
+                
+                else 
+                {
+                    alert('결제 실패: ' + rsp.error_msg + "\n메인 페이지로 이동합니다");
+                    location.href="/basic/mainPage-view";
+                }
+            });
+      	});
+      </script>
+      
+</html>
