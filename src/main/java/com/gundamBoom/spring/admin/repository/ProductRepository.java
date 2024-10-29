@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface ProductRepository 
 {
 	public int productUpdate
-	(
+	(	
 		@Param("productId") int productId,
 		@Param("name") String name,
 		@Param("menufacturer") String menufacturer,

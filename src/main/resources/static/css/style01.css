@@ -254,6 +254,24 @@ header > .move-to-administrator-page
 	height: 600px;
 }
 
+.default-content > .info-area /* 결제하기 직전 마지막으로 결제 정보를 출력하는 코드 */
+{
+	width: 1200px;
+	height: 200px;
+}
+
+.info-area > .product-area
+{
+	width: 1200px;
+	height:200px;
+}
+
+.default-content > .customer-info-area
+{
+	width: 1200px;
+	height: 300px;
+}
+
 footer
 {
 	height: 500px;

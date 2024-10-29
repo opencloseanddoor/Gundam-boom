@@ -54,4 +54,22 @@
 		WHERE 
 			`loginId` = #{loginId};
 	</select>
+	
+	<select id="searchtUser" parameterType="String" resultType="com.gundamBoom.spring.user.domain.User">
+		SELECT
+			`id`,
+			`loginId`,
+			`password`,
+			`name`,
+			`address`,
+			`phoneNumber`,
+			`createdAt`,
+			`updatedAt`
+			
+		FROM `user`
+		
+		WHERE 
+			`loginId` = #{loginId};
+	</select>
+	
 </mapper>

@@ -19,16 +19,13 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/buy")
 public class BuyRestController 
 {
-	private UserService userService;
 	private BuyService buyService;
 	
 	public BuyRestController
 	(
-		UserService userService,
 		BuyService buyService
 	)
 	{
-		this.userService = userService;
 		this.buyService = buyService;
 	}
 	

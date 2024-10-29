@@ -53,6 +53,7 @@ public class AdminController
 	{
 		Product product = adminService.getProduct(productId);
 		
+		
 		model.addAttribute(product);
 			
 		return "admin/modify";

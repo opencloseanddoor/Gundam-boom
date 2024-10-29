@@ -8,15 +8,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gundamBoom.spring.admin.domain.Product;
 import com.gundamBoom.spring.admin.service.AdminService;
+import com.gundamBoom.spring.user.domain.User;
+import com.gundamBoom.spring.user.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/buy")
 public class BuyController 
 {
 	private AdminService adminService;
+	private UserService userService;
 	
-	public BuyController(AdminService adminService)
+	public BuyController
+	(
+		UserService userService,
+		AdminService adminService
+	)
 	{
+		this.userService = userService;
 		this.adminService = adminService;
 	}
 	
@@ -49,10 +59,16 @@ public class BuyController
 	public String importBuy
 	(
 		@PathVariable("productId") int productId,
-		Model model
+		Model model,
+		HttpSession session
 	)
 	{
-		model.addAttribute("productId", productId);
+		String loginId = (String)session.getAttribute("loginId");
+		
+		User user = userService.selectUserByLoginId(loginId);
+		Product product = adminService.getProduct(productId);
+		model.addAttribute("user", user);
+		model.addAttribute("product", product);
 		
 		return "basic/importBuy";
 	}

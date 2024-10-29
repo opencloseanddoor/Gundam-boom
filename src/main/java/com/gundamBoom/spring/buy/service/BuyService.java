@@ -64,4 +64,9 @@ public class BuyService
 		
 		return result;
 	}
+	
+	public UserProduct findUserProduct(int userId)
+	{
+		return userOrderRepository.findByUserId(userId);
+	}
 }

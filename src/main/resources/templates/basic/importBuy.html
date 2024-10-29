@@ -4,44 +4,93 @@
       layout:decorate="~{layout/default}">
       
       <section layout:fragment="default-content" class="default-content">
-      	<div th:text="${productId}"></div>
+      	<article class="info-area d-flex justify-content-start align-items-start">
+      		<div class="product-area d-flex align-items-center">
+      			<table border="1" class="table text-center">
+      				<thead>
+      					<tr>
+      						<th>상품 이미지</th>
+      						<th>상품 이름</th>
+      						<th>상품 가격</th>
+      						<th>제조사</th>
+      					</tr>
+      				</thead>
+      				<tbody>
+      					<tr>
+      						<td><img width="100px" height="100px" th:src="${product.imagePath}"></td>
+      						<td id="productName" class="align-middle" th:text="${product.name}"></td>
+      						<td id="productPrice" class="align-middle" th:text="${product.price}"></td>
+      						<td class="align-middle" th:text="${product.menufacturer}"></td>
+      					</tr>
+      				</tbody>
+      			</table>
+      		</div>
+      	</article>
+      	
+      	<article class="customer-info-area d-flex justify-content-center align-items-center">
+      		<table border="1" class="table text-center">
+      			<thead>
+      				<tr>
+      					<th>이름</th>
+      					<th>전화번호</th>
+      					<th>주소</th>
+      				</tr>
+      			</thead>
+      			
+      			<tbody>
+      				<tr>
+      					<th id="userName" class="align-middle" th:text="${user.name}">
+      					<th id="userPhoneNumber" class="align-middle" th:text="${user.phoneNumber}">
+      					<th class="align-middle" th:text="${user.address}">
+      				</tr>
+      			</tbody>
+      		</table>
+      	</article>
+      	
+      	<div class="btn class d-flex align-items-center justify-content-end">
+      		<button type="button" class="m-3 btn btn-secondary">수정하기</button>
+      		<button type="button" th:data-id="${product.id}" id="paid-btn" class="m-3 btn btn-success">결제하기</button>
+      	</div>
       </section>
       
       <script layout:fragment="script">
       	$(document).ready(function()
       	{
       		const IMP = window.IMP;
-            IMP.init('imp00065124'); // 아임포트 키 입력
+            IMP.init('imp00065124');
             
-            let productId = $(this).data("id");
-            let productPrice = 1; // 가격을 가져오는 로직 추가
-            let productName = '건담'; // 이름을 가져오는 로직 추가
-
-            IMP.request_pay
-            ({
-                pg: 'html5_inicis', // PG사
-                pay_method: 'card', // 결제 방법
-                merchant_uid: 'order_id_' + new Date().getTime(), // 주문 ID
-                amount: productPrice, // 결제 금액
-                name: productName, // 주문명
-                buyer_name: '구매자 이름', // 구매자 이름
-                buyer_tel: '010-1234-5678', // 구매자 전화번호
-                buyer_email: 'buyer@example.com', // 구매자 이메일
-            }
-            ,
-            function(rsp) 
+            let productPrice = $("#productPrice").text();
+            let productName = $("#productName").text();
+            let name = $("#userName").text();
+            let phoneNumber = $("#userPhoneNumber").text();
+            
+            $("#paid-btn").on("click", function()
             {
-                if (rsp.success) 
+            	let productId = $(this).data("id");
+            	 
+            	IMP.request_pay
+                ({
+                    pg: 'html5_inicis', // PG사
+                    pay_method: 'card', // 결제 방법
+                    merchant_uid: productId + productName + new Date().getTime(), // 주문 ID
+                    amount: productPrice, // 결제 금액
+                    name: productName, // 주문명
+                    buyer_name: name, // 구매자 이름
+                    buyer_tel: phoneNumber, // 구매자 전화번호
+                    buyer_email: 'buyer@example.com', // 구매자 이메일
+                },
+                function(rsp) 
                 {
-                    alert('결제가 완료되었습니다.');
-                    // 결제 성공 시 처리할 로직 추가
-                } 
-                
-                else 
-                {
-                    alert('결제 실패: ' + rsp.error_msg + "\n메인 페이지로 이동합니다");
-                    location.href="/basic/mainPage-view";
-                }
+                    if (rsp.success) 
+                    {
+                        alert('결제가 완료되었습니다.');
+                    } 
+                    
+                    else 
+                    {
+                        alert('결제 실패: ' + rsp.error_msg);
+                    }
+                }); 
             });
       	});
       </script>
