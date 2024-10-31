@@ -272,6 +272,11 @@ header > .move-to-administrator-page
 	height: 300px;
 }
 
+.default-content > .shopping-cart-area /*장바구니 리스트를 표시하기 위한 영역입니다 */
+{
+	width: 1200px;
+}
+
 footer
 {
 	height: 500px;

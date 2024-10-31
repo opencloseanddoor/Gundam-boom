@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gundamBoom.spring.buy.domain.ProductList;
+import com.gundamBoom.spring.buy.domain.ShoppingCart;
 import com.gundamBoom.spring.buy.domain.UserProduct;
 import com.gundamBoom.spring.buy.service.BuyService;
-import com.gundamBoom.spring.user.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -59,6 +59,30 @@ public class BuyRestController
 		else
 		{
 			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
+	}
+	
+	@PostMapping("shoppingCartRest")
+	public Map<String, String> ShoppingCartRestController
+	(
+		@RequestParam("productId") int productId,
+		@RequestParam("count") int count,
+		HttpSession session
+	)
+	{
+		Map<String, String> resultMap = new HashMap<>();
+		int userId = (Integer)session.getAttribute("userId");
+		ShoppingCart shoppingCart = buyService.addShoppingCartListService(productId, userId, count);
+		
+		if(shoppingCart != null)
+		{
+			resultMap.put("result", "success");
+		}
+		else
+		{
+			resultMap.put("result", "success");
 		}
 		
 		return resultMap;

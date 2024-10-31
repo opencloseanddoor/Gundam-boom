@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+      
+      <section layout:fragment="default-content" class="default-content">
+      
+      	<div class="shopping-cart-area">
+      		<table border="1" class="text-center table">
+	      		<thead>
+	      			<tr>
+	      				<th>상품 이미지</th>
+	      				<th>상품 이름</th>
+	      				<th>수량</th>
+	      			</tr>
+	      		</thead>
+	      		<tbody>
+	      			<tr th:each="cart : ${shoppingCartList}">
+	      				<td><img height="100px" width="100px" src=""></td>
+	      				<td class="align-middle">뉴건담</td>
+	      				<td th:text="${cart.count}" class="align-middle">7</td>
+	      			</tr>
+	      		</tbody>
+      		</table>
+      	</div>
+      </section>
+      
+</html>

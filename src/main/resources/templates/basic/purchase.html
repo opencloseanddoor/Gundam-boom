@@ -38,7 +38,7 @@
 				
 				<div class="btns d-flex align-items-center justify-content-center">
 					<button type="button" th:data-id="${productId}" id="buy-btn" class="ml-4 btn btn-success">구매하기</button>
-					<button type="button" class="ml-4 btn btn-success">장바구니</button>
+					<button type="button" id="shopping-cart-add-btn" class="ml-4 btn btn-success" th:data-id="${productId}">장바구니</button>
 					<button type="button" class="ml-4 btn btn-danger">찜하기</button>
 				</div>
 			</div>
@@ -58,6 +58,33 @@
 				*/
 				let productId = $(this).data("id");
 				location.href="/buy/orderPage-view/" + productId;
+			});
+			
+			$("#shopping-cart-add-btn").on("click", function()
+			{
+				let productId = $(this).data("id");
+				let count = 1;
+				$.ajax
+				({
+					type:"post",
+					url:"/buy/shoppingCartRest",
+					data:{"productId":productId, "count":count},
+					success:function(data)
+					{
+						if(data.result == "success")
+						{
+							alert("장바구니 추가 성공");
+						}
+						else
+						{
+							alert("장바구니 추가 실패");
+						}
+					}
+					,error:function()
+					{
+						alert("장바구니 추가 에러");
+					}
+				});
 			});
 		});
 	</script>
