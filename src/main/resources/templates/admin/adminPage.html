@@ -46,15 +46,27 @@
 				
 			</div>
 			
-			<div class="add-button">
-				<button type="button" id="add-btn" class="btn btn-success">추가</button>
+			<div class="d-flex">
+				<div class="add-button">
+					<button type="button" id="add-btn" class="btn btn-success">상품 추가</button>
+				</div>
+			
+				<div class="order-list-btn">
+					<button type="button" id="order-list-view-btn" class="ml-3 btn btn-primary">고객주문목록</button>		
+				</div>
 			</div>
+			
 		</div>
 	</section>
 	
 	<script layout:fragment="script">
 		$(document).ready(function()
 		{
+			$("#order-list-view-btn").on("click", function()
+			{
+				location.href="/buy/order-list-view";	
+			});
+			
 			$("#add-btn").on("click", function()
 			{
 				location.href="/admin/insert-view";

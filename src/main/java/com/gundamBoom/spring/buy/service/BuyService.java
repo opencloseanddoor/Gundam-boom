@@ -5,10 +5,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.gundamBoom.spring.admin.domain.Product;
+import com.gundamBoom.spring.admin.dto.ProductView;
+import com.gundamBoom.spring.admin.service.AdminService;
 import com.gundamBoom.spring.buy.domain.ProductList;
 import com.gundamBoom.spring.buy.domain.ShoppingCart;
 import com.gundamBoom.spring.buy.domain.UserProduct;
+import com.gundamBoom.spring.buy.dto.ProductListView;
 import com.gundamBoom.spring.buy.dto.ShoppingCartView;
+import com.gundamBoom.spring.buy.dto.UserProductView;
 import com.gundamBoom.spring.buy.repository.ShoppingCartRepository;
 import com.gundamBoom.spring.buy.repository.UserOrderListRepository;
 import com.gundamBoom.spring.buy.repository.UserOrderRepository;
@@ -19,17 +24,20 @@ public class BuyService
 	private UserOrderRepository userOrderRepository;
 	private UserOrderListRepository userOrderListRepository;
 	private ShoppingCartRepository shoppingCartRepository;
+	private AdminService adminService;
 	
 	public BuyService
 	(
 		UserOrderRepository userOrderRepository,
 		UserOrderListRepository userOrderListRepository,
-		ShoppingCartRepository shoppingCartRepository
+		ShoppingCartRepository shoppingCartRepository,
+		AdminService adminService
 	)
 	{
 		this.userOrderRepository = userOrderRepository;
 		this.userOrderListRepository = userOrderListRepository;
 		this.shoppingCartRepository = shoppingCartRepository;
+		this.adminService = adminService;
 	}
 	
 	public UserProduct insertUser
@@ -119,5 +127,26 @@ public class BuyService
 		}
 		
 		return shoppingCartListView;
+	}
+	
+	public List<UserProductView> searchListByUserProduct(int userId)
+	{
+		List<UserProduct> userProductList = userOrderRepository.findAllByUserId(userId);
+		List<UserProductView> userProductListView = new ArrayList<>();
+		
+		for(UserProduct item : userProductList)
+		{
+			UserProductView view = UserProductView
+					.builder()
+					.userId(userId)
+					.name(item.getName())
+					.phoneNumber(item.getPhoneNumber())
+					.address(item.getAddress())
+					.status(item.getStatus())
+					.build();
+			userProductListView.add(view);
+		}
+		
+		return userProductListView;
 	}
 }

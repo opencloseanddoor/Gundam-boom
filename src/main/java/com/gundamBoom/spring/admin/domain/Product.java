@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Table(name="product")
 @Entity
-public class Product 
+public class Product
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

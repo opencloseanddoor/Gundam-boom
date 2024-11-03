@@ -1,6 +1,5 @@
 package com.gundamBoom.spring.buy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -10,10 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gundamBoom.spring.admin.domain.Product;
-import com.gundamBoom.spring.admin.dto.ProductView;
 import com.gundamBoom.spring.admin.service.AdminService;
-import com.gundamBoom.spring.buy.domain.ShoppingCart;
 import com.gundamBoom.spring.buy.dto.ShoppingCartView;
+import com.gundamBoom.spring.buy.dto.UserProductView;
 import com.gundamBoom.spring.buy.service.BuyService;
 import com.gundamBoom.spring.user.domain.User;
 import com.gundamBoom.spring.user.service.UserService;
@@ -96,5 +94,14 @@ public class BuyController
 		model.addAttribute("shoppingCartList", shoppingCartList);
 		
 		return "basic/shoppingCart";
+	}
+	
+	@GetMapping("/order-list-view")
+	public String orderList(Model model)
+	{
+		List<UserProductView> userProductView = buyService.searchListByUserProduct(1);
+		model.addAttribute("userProductView", userProductView);
+		
+		return "basic/orderList";
 	}
 }

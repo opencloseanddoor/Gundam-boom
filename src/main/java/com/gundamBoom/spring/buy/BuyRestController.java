@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gundamBoom.spring.admin.dto.ProductView;
 import com.gundamBoom.spring.buy.domain.ProductList;
 import com.gundamBoom.spring.buy.domain.ShoppingCart;
 import com.gundamBoom.spring.buy.domain.UserProduct;
@@ -82,7 +83,7 @@ public class BuyRestController
 		}
 		else
 		{
-			resultMap.put("result", "success");
+			resultMap.put("result", "fail");
 		}
 		
 		return resultMap;
