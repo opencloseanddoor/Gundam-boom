@@ -14,6 +14,6 @@ public class WebMvcConfig implements WebMvcConfigurer
 	public void addResourceHandlers(ResourceHandlerRegistry registry)
 	{
 		registry.addResourceHandler("/images/**")
-		.addResourceLocations("file:///" + FileManager.FILE_UPLOAD_PATH + "/");	//MAC또는 리눅스에서는 //(/이 2개만 필요) 윈도우에서는 ///(/이 3개 필요)하다	
+		.addResourceLocations("file://" + FileManager.FILE_UPLOAD_PATH + "/");	//MAC또는 리눅스에서는 //(/이 2개만 필요) 윈도우에서는 ///(/이 3개 필요)하다	
 	}
 }

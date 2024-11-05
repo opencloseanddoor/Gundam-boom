@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileManager 
 {
 	// 업로드 경로를 지정하기 위한 전역 변수 선언
-	public static final String FILE_UPLOAD_PATH = "X:\\Spring_project\\Gundam_boom_project\\upload";
+	public static final String FILE_UPLOAD_PATH = "/home/ec2-user/upload";
 	
 	// 파일 저장
 	public static String saveFile(MultipartFile file)
