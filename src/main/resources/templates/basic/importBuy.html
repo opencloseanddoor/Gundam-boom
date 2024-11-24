@@ -31,9 +31,9 @@
       		<table border="1" class="table text-center">
       			<thead>
       				<tr>
-      					<th>이름</th>
-      					<th>전화번호</th>
-      					<th>주소</th>
+      					<th>주문자</th>
+      					<th>주문자 전화번호</th>
+      					<th>주문자 주소</th>
       				</tr>
       			</thead>
       			
@@ -46,6 +46,28 @@
       			</tbody>
       		</table>
       	</article>
+      	
+      	
+      	<article class="customer-info-area d-flex justify-content-center align-items-center">
+      		<table border="1" class="table text-center">
+      			<thead>
+      				<tr>
+      					<th>수신자</th>
+      					<th>수신자 전화번호</th>
+      					<th>수신자 주소</th>
+      				</tr>
+      			</thead>
+      			
+      			<tbody>
+      				<tr>
+      					<th id="userName" class="align-middle" th:text="${userProduct.name}">
+      					<th id="userPhoneNumber" class="align-middle" th:text="${userProduct.phoneNumber}">
+      					<th class="align-middle" th:text="${userProduct.address}">
+      				</tr>
+      			</tbody>
+      		</table>
+      	</article>
+      	
       	
       	<div class="btn class d-flex align-items-center justify-content-end">
       		<button type="button" class="m-3 btn btn-secondary">수정하기</button>

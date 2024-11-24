@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gundamBoom.spring.admin.domain.Product;
 import com.gundamBoom.spring.admin.service.AdminService;
-import com.gundamBoom.spring.buy.dto.ShoppingCartView;
+import com.gundamBoom.spring.buy.domain.UserProduct;
 import com.gundamBoom.spring.buy.dto.UserProductView;
 import com.gundamBoom.spring.buy.service.BuyService;
 import com.gundamBoom.spring.user.domain.User;
@@ -75,25 +75,13 @@ public class BuyController
 		
 		User user = userService.selectUserByLoginId(loginId);
 		Product product = adminService.getProduct(productId);
+		UserProduct userProduct = buyService.findUserProduct(user.getId());		
+		
 		model.addAttribute("user", user);
 		model.addAttribute("product", product);
+		model.addAttribute("userProduct", userProduct);
 		
 		return "basic/importBuy";
-	}
-	
-	@GetMapping("/shopping-cart-view")
-	public String shoppingCart
-	(
-		Model model,
-		HttpSession session
-	)
-	{
-		int userId = (Integer)session.getAttribute("userId");
-		List<ShoppingCartView> shoppingCartList = buyService.searchShoppingCartList(userId);
-		
-		model.addAttribute("shoppingCartList", shoppingCartList);
-		
-		return "basic/shoppingCart";
 	}
 	
 	@GetMapping("/order-list-view")

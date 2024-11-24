@@ -7,6 +7,7 @@ import lombok.Getter;
 @Builder
 public class ShoppingCartView 
 {
+	private int id;
 	private int productId;
 	private int userId;
 	private int count;

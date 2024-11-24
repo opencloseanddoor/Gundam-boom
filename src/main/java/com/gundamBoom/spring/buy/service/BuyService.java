@@ -5,13 +5,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.gundamBoom.spring.admin.domain.Product;
-import com.gundamBoom.spring.admin.dto.ProductView;
 import com.gundamBoom.spring.admin.service.AdminService;
 import com.gundamBoom.spring.buy.domain.ProductList;
 import com.gundamBoom.spring.buy.domain.ShoppingCart;
 import com.gundamBoom.spring.buy.domain.UserProduct;
-import com.gundamBoom.spring.buy.dto.ProductListView;
 import com.gundamBoom.spring.buy.dto.ShoppingCartView;
 import com.gundamBoom.spring.buy.dto.UserProductView;
 import com.gundamBoom.spring.buy.repository.ShoppingCartRepository;
@@ -23,8 +20,6 @@ public class BuyService
 {
 	private UserOrderRepository userOrderRepository;
 	private UserOrderListRepository userOrderListRepository;
-	private ShoppingCartRepository shoppingCartRepository;
-	private AdminService adminService;
 	
 	public BuyService
 	(
@@ -36,8 +31,6 @@ public class BuyService
 	{
 		this.userOrderRepository = userOrderRepository;
 		this.userOrderListRepository = userOrderListRepository;
-		this.shoppingCartRepository = shoppingCartRepository;
-		this.adminService = adminService;
 	}
 	
 	public UserProduct insertUser
@@ -84,49 +77,7 @@ public class BuyService
 	
 	public UserProduct findUserProduct(int userId)
 	{
-		return userOrderRepository.findByUserId(userId);
-	}
-	
-	public ShoppingCart addShoppingCartListService
-	(
-		int productId,
-		int userId,
-		int count
-	)
-	{
-		ShoppingCart shoppingCart = ShoppingCart
-				.builder()
-				.productId(productId)
-				.userId(userId)
-				.count(count)
-				.build();
-		
-		ShoppingCart result = shoppingCartRepository.save(shoppingCart);
-		
-		return result;
-	}
-	
-	public List<ShoppingCartView> searchShoppingCartList
-	(
-		int userId
-	)
-	{
-		List<ShoppingCart> shoppingCartList = shoppingCartRepository.findAllByUserId(userId);
-		List<ShoppingCartView> shoppingCartListView = new ArrayList<>();
-		
-		for(ShoppingCart item : shoppingCartList)
-		{
-			ShoppingCartView cart = ShoppingCartView
-					.builder()
-					.productId(item.getProductId())
-					.userId(item.getUserId())
-					.count(item.getCount())
-					.build();
-			
-			shoppingCartListView.add(cart);
-		}
-		
-		return shoppingCartListView;
+		return userOrderRepository.findTopByUserIdOrderByIdDesc(userId);
 	}
 	
 	public List<UserProductView> searchListByUserProduct(int userId)

@@ -64,28 +64,4 @@ public class BuyRestController
 		
 		return resultMap;
 	}
-	
-	@PostMapping("shoppingCartRest")
-	public Map<String, String> ShoppingCartRestController
-	(
-		@RequestParam("productId") int productId,
-		@RequestParam("count") int count,
-		HttpSession session
-	)
-	{
-		Map<String, String> resultMap = new HashMap<>();
-		int userId = (Integer)session.getAttribute("userId");
-		ShoppingCart shoppingCart = buyService.addShoppingCartListService(productId, userId, count);
-		
-		if(shoppingCart != null)
-		{
-			resultMap.put("result", "success");
-		}
-		else
-		{
-			resultMap.put("result", "fail");
-		}
-		
-		return resultMap;
-	}
 }
