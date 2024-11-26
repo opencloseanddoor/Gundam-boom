@@ -53,7 +53,7 @@ public class ShoppingCartService
 	)
 	{
 		List<ShoppingCart> shoppingCartList = shoppingCartRepository.findAllByUserIdOrderByIdDesc(userId);
-		List<ShoppingCartView> productList = new ArrayList<>();
+		List<ShoppingCartView> cartList = new ArrayList<>();
 		
 		for(ShoppingCart item : shoppingCartList)
 		{			
@@ -71,10 +71,10 @@ public class ShoppingCartService
 					.count(item.getCount())
 					.build();
 			
-			productList.add(view);
+			cartList.add(view);
 		}
 	    
-	    return productList;
+	    return cartList;
 	}
 	
 	public boolean delete(int id)
