@@ -47,47 +47,34 @@ public class ShoppingCartService
 		return result;
 	}
 	
-	public List<Product> searchProductList
+	public List<ShoppingCartView> searchShoppingCartView
 	(
 		int userId
 	)
 	{
 		List<ShoppingCart> shoppingCartList = shoppingCartRepository.findAllByUserIdOrderByIdDesc(userId);
-		List<Product> productList = new ArrayList<>();
+		List<ShoppingCartView> productList = new ArrayList<>();
 		
 		for(ShoppingCart item : shoppingCartList)
 		{			
-			int productId = item.getProductId();
+			int productId = item.getProductId(); // ShoppingCartList에는 productId가 존재하므로 Product클래스를 가져오기 위한 id를 가져온다.
 			
-			Product product = adminService.getProduct(productId);
+			Product product = adminService.getProduct(productId); //DTO클래스에 Product클래스를 넣기 위하여 해당 클래스를 가져온다.
 			
-			productList.add(product);
-		}
-	    
-	    return productList;
-	}
-	
-	public List<ShoppingCartView> searchShoppingCartList
-	(
-		int userId
-	)
-	{
-		List<ShoppingCart> shoppingCartList = shoppingCartRepository.findAllByUserIdOrderByIdDesc(userId);
-		List<ShoppingCartView> viewList = new ArrayList<>();
-		
-		for(ShoppingCart item : shoppingCartList)
-		{
 			ShoppingCartView view = ShoppingCartView
 					.builder()
 					.id(item.getId())
 					.productId(item.getProductId())
+					.product(product)
+					.imagePath(product.getImagePath())
 					.userId(item.getUserId())
 					.count(item.getCount())
 					.build();
 			
-			viewList.add(view);
+			productList.add(view);
 		}
-		return viewList;		
+	    
+	    return productList;
 	}
 	
 	public boolean delete(int id)
