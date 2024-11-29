@@ -75,4 +75,24 @@ public class ShoppingCartRestController
 		}
 		return resultMap;
 	}
+	
+	@PostMapping("/allDeleteShoppingCart")
+	public Map<String, String> allDeleteShoppingCart
+	(
+		@RequestParam("userId") int userId
+	)	
+	{
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(shoppingCartService.allDelete(userId))
+		{
+			resultMap.put("result", "success");
+		}
+		else
+		{
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
+	}
 }

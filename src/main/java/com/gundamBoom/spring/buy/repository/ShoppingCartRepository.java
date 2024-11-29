@@ -9,4 +9,6 @@ import com.gundamBoom.spring.buy.domain.ShoppingCart;
 public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Integer> 
 {
 	public List<ShoppingCart> findAllByUserIdOrderByIdDesc(int userId);
-}
+	
+	public List<ShoppingCart> findAllByUserId(int userId);
+} 

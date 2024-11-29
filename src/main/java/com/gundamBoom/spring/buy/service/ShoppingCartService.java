@@ -92,4 +92,19 @@ public class ShoppingCartService
 			return false;
 		}
 	}
+	
+	public Boolean allDelete(int userId)
+	{
+		List<ShoppingCart> shoppingCarts = shoppingCartRepository.findAllByUserId(userId);
+		
+		if(!shoppingCarts.isEmpty())
+		{
+			shoppingCartRepository.deleteAll(shoppingCarts);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

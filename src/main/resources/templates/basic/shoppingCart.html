@@ -59,6 +59,34 @@
       				}   
       			});
       		});
+      		
+      		$(".all-delete").on("click", function()
+      		{
+      			let userId = $(this).data("id"); // 전부 삭제를 하기 위한 기준은 사용자 id이다.
+      			
+				$.ajax
+				({
+					type:"post",
+					url:"/shoppingCart/allDeleteShoppingCart",
+					data:{"userId":userId},
+					success:function(data)
+					{
+						if(data.result == "success")
+						{
+							alert("전부 삭제 성공.");
+							location.reload();
+						}
+						else
+						{
+							alert("전부 삭제 실패.");
+						}
+					}
+					,error:function()
+					{
+						alert("전부 삭제 에러!!!");
+					}
+				});
+      		});
       	});    	
       </script>
 </html>
