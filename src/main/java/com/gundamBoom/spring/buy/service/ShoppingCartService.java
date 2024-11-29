@@ -95,14 +95,14 @@ public class ShoppingCartService
 	
 	public Boolean allDelete(int userId)
 	{
-		List<ShoppingCart> shoppingCarts = shoppingCartRepository.findAllByUserId(userId);
+		List<ShoppingCart> shoppingCarts = shoppingCartRepository.findAllByUserId(userId); // 모든 장바구니 목록을 얻어옵니다.
 		
-		if(!shoppingCarts.isEmpty())
+		if(!shoppingCarts.isEmpty()) // 장바구니가 비어있지 않으면 참입니다.
 		{
-			shoppingCartRepository.deleteAll(shoppingCarts);
-			return true;
+			shoppingCartRepository.deleteAll(shoppingCarts); // deleteAll을 통해서 모든 목록을 삭제합니다.
+			return true; // 참을 반환
 		}
-		else
+		else // 장바구니가 비어있으면 참
 		{
 			return false;
 		}
