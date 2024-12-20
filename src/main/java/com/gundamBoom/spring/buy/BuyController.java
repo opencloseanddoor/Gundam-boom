@@ -84,10 +84,14 @@ public class BuyController
 		return "basic/importBuy";
 	}
 	
-	@GetMapping("/order-list-view")
-	public String orderList(Model model)
+	@GetMapping("/order-list-view/{userId}")
+	public String orderList
+	(
+		Model model, 
+		@PathVariable("userId") int userId
+	)
 	{
-		List<UserProductView> userProductView = buyService.searchListByUserProduct(1);
+		List<UserProductView> userProductView = buyService.searchListByUserProduct(userId);
 		model.addAttribute("userProductView", userProductView);
 		
 		return "basic/orderList";

@@ -66,6 +66,7 @@ public class ShoppingCartService
 					.id(item.getId())
 					.productId(item.getProductId())
 					.product(product)
+					.name(product.getName())
 					.imagePath(product.getImagePath())
 					.userId(item.getUserId())
 					.count(item.getCount())

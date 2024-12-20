@@ -48,7 +48,7 @@ public class BuyRestController
 		UserProduct userProduct = buyService.insertUser(userId, name, address, phoneNumber, status);
 		
 		int userProductId = userProduct.getId();
-		int count = 1;
+		int count = 1; //임시로 설정을 해 둔 변수 나중에 삭제해야 함.
 		
 		ProductList productList = buyService.insertProductList(userProductId, productId, count);
 				

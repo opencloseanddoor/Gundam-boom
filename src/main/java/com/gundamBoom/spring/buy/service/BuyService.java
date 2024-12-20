@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.gundamBoom.spring.admin.domain.Product;
 import com.gundamBoom.spring.admin.service.AdminService;
 import com.gundamBoom.spring.buy.domain.ProductList;
-import com.gundamBoom.spring.buy.domain.ShoppingCart;
 import com.gundamBoom.spring.buy.domain.UserProduct;
-import com.gundamBoom.spring.buy.dto.ShoppingCartView;
+import com.gundamBoom.spring.buy.dto.NormalUserView;
 import com.gundamBoom.spring.buy.dto.UserProductView;
 import com.gundamBoom.spring.buy.repository.ShoppingCartRepository;
 import com.gundamBoom.spring.buy.repository.UserOrderListRepository;
@@ -20,6 +20,7 @@ public class BuyService
 {
 	private UserOrderRepository userOrderRepository;
 	private UserOrderListRepository userOrderListRepository;
+	private AdminService adminService;
 	
 	public BuyService
 	(
@@ -31,6 +32,7 @@ public class BuyService
 	{
 		this.userOrderRepository = userOrderRepository;
 		this.userOrderListRepository = userOrderListRepository;
+		this.adminService = adminService;
 	}
 	
 	public UserProduct insertUser
@@ -99,5 +101,33 @@ public class BuyService
 		}
 		
 		return userProductListView;
+	}
+	
+	public List<NormalUserView> searchUserProduct(int userId)
+	{
+		List<UserProduct> userProductList = userOrderRepository.findAllByUserId(userId);
+		List<NormalUserView> normalUserViewList = new ArrayList<>();
+		
+		for(UserProduct item : userProductList)
+		{
+			int userProductId  = item.getId();	
+			
+			ProductList productListItem = userOrderListRepository.findByUserProductId(userProductId);
+			
+			int productId = productListItem.getProductId();
+			int count = productListItem.getCount();
+			Product product = adminService.getProduct(productId);
+			
+			NormalUserView normalUserView = NormalUserView.builder() 
+			.productName(product.getName())
+			.name(product.getName())
+			.imagePath(product.getImagePath())
+			.count(count)
+			.build();
+			
+			normalUserViewList.add(normalUserView);
+		}
+		
+		return normalUserViewList;
 	}
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+    
+    <section layout:fragment="default-content" class="default-content">
+        <div class="user-page-area">
+            <table border="1" class="table text-center">
+                <thead>
+                    <tr>
+                        <th>상품 이미지</th>
+                        <th>상품 이름</th>
+                        <th>수량</th>
+                        <th>삭제</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr th:each="normalUserView : ${normalUserViewList}">
+                        <td><img width="100px" height="100px" th:src="${normalUserView.imagePath}"alt="건담 사진입니다."></td>
+                        <td class="align-middle" th:text="${normalUserView.productName}">에피온 건담</td> 
+                        <td class="align-middle" th:text="${normalUserView.count}">5개</td>
+                        <td class="align-middle"><button class="btn btn-danger">삭제</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</html>

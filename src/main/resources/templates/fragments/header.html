@@ -17,13 +17,17 @@
 				
 			<div class="d-flex align-items-center">
 				<div th:if="${session.userId != null}" class="ml-3 user-name display-6 d-flex">
-					<span th:text="${session.userName}">
+					<span th:text="|${session.userName}님|">
 						My name
 					</span>
 				</div>
 					
 				<div th:if="${session.userId != null && session.loginId == 'asm2007'}" class="ml-3 move-to-administrator-page d-flex">
 					<a href="/admin/list-view">관리자 페이지</a>
+				</div>
+				
+				<div th:if="${session.userId != null && session.loginId != 'asm2007'}" class="ml-3 move-to-user-page d-flex">
+					<a href="/userPage/userShoppingList">마이 페이지</a>
 				</div>
 				
 				<div class="ml-3 mr-3" th:if="${session.userId != null}">

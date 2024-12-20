@@ -19,7 +19,7 @@
 	      			<tr th:each="cart : ${shoppingCartList}">
 	      				<td><img height="100px" width="100px" th:src="${cart.imagePath}"></td>
 	      				<td th:text="${cart.name}" class="align-middle">뉴건담</td>
-	      				<td th:text="${cart.count}">수량</td>
+	      				<td class="align-middle" th:text="${cart.count}">수량</td>
 	      				<td class="align-middle"><button th:data-id="${cart.id}" class="delete-btn btn btn-danger">삭제</button></td>
 	      			</tr>
 	      		</tbody>

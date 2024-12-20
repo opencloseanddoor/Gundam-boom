@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.gundamBoom.spring.admin.domain.Product;
 import com.gundamBoom.spring.buy.dto.ShoppingCartView;
 import com.gundamBoom.spring.buy.service.BuyService;
 import com.gundamBoom.spring.buy.service.ShoppingCartService;
