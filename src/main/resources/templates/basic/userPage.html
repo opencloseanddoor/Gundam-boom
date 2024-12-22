@@ -11,6 +11,7 @@
                         <th>상품 이미지</th>
                         <th>상품 이름</th>
                         <th>수량</th>
+                        <th>상태</th>
                         <th>삭제</th>
                     </tr>
                 </thead>
@@ -20,6 +21,7 @@
                         <td><img width="100px" height="100px" th:src="${normalUserView.imagePath}"alt="건담 사진입니다."></td>
                         <td class="align-middle" th:text="${normalUserView.productName}">에피온 건담</td> 
                         <td class="align-middle" th:text="${normalUserView.count}">5개</td>
+                        <td class="align-middle" th:text="${normalUserView.status}"></td>
                         <td class="align-middle"><button class="btn btn-danger">삭제</button></td>
                     </tr>
                 </tbody>

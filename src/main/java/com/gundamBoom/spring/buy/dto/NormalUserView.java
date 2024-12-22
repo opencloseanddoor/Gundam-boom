@@ -11,5 +11,6 @@ public class NormalUserView
 	private String name;
 	private String productName;
 	private String imagePath;
+	private String status;
 	private int count;
 }

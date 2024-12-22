@@ -51,9 +51,11 @@ public class BuyRestController
 		int count = 1; //임시로 설정을 해 둔 변수 나중에 삭제해야 함.
 		
 		ProductList productList = buyService.insertProductList(userProductId, productId, count);
-				
+		
 		if(userProduct != null && productList != null)
 		{
+			userProduct = buyService.updateStatusOfTheUser(userId, "결제 중");
+			
 			resultMap.put("result", "success");
 		}
 		

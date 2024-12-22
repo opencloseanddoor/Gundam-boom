@@ -2,6 +2,7 @@ package com.gundamBoom.spring.buy.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -116,18 +117,31 @@ public class BuyService
 			
 			int productId = productListItem.getProductId();
 			int count = productListItem.getCount();
+			String status = item.getStatus();
 			Product product = adminService.getProduct(productId);
 			
 			NormalUserView normalUserView = NormalUserView.builder() 
 			.productName(product.getName())
 			.name(product.getName())
 			.imagePath(product.getImagePath())
+			.status(status)
 			.count(count)
 			.build();
 			
 			normalUserViewList.add(normalUserView);
 		}
-		
 		return normalUserViewList;
+	}
+	
+	public UserProduct updateStatusOfTheUser(int userId, String status)
+	{
+		Optional<UserProduct> optionalUserProduct = userOrderRepository.findById(userId);
+		UserProduct userProduct = optionalUserProduct.orElse(null);
+		
+		userProduct = userProduct.toBuilder().status(status).build();
+		
+		userProduct = userOrderRepository.save(userProduct);
+		
+		return userProduct;
 	}
 }
