@@ -106,7 +106,7 @@ public class BuyService
 	
 	public List<NormalUserView> searchUserProduct(int userId)
 	{
-		List<UserProduct> userProductList = userOrderRepository.findAllByUserId(userId);
+		List<UserProduct> userProductList = userOrderRepository.findAllByUserIdOrderByIdDesc(userId);
 		List<NormalUserView> normalUserViewList = new ArrayList<>();
 		
 		for(UserProduct item : userProductList)
@@ -133,9 +133,9 @@ public class BuyService
 		return normalUserViewList;
 	}
 	
-	public UserProduct updateStatusOfTheUser(int userId, String status)
+	public UserProduct updateStatusOfTheUser(int userProductId, String status)
 	{
-		Optional<UserProduct> optionalUserProduct = userOrderRepository.findById(userId);
+		Optional<UserProduct> optionalUserProduct = userOrderRepository.findById(userProductId);
 		UserProduct userProduct = optionalUserProduct.orElse(null);
 		
 		userProduct = userProduct.toBuilder().status(status).build();

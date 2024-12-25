@@ -35,8 +35,6 @@ public class ShoppingCartController
 		HttpSession session
 	)
 	{
-		// 아래의 코드에서 상품 정보를 조회하는 기능을 구현되었음
-		// 하지만 상품의 수량을 조회하는 기능은 구현이 안 되었으므로 수량을 갖고있는 테이블을 이용해서 수량을 조회하자.
 		int userId = (Integer)session.getAttribute("userId");
 		List<ShoppingCartView> shoppingCartList = shoppingCartService.searchShoppingCartView(userId);
 		

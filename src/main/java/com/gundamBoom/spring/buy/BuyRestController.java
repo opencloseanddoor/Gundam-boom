@@ -54,7 +54,7 @@ public class BuyRestController
 		
 		if(userProduct != null && productList != null)
 		{
-			userProduct = buyService.updateStatusOfTheUser(userId, "결제 중");
+			userProduct = buyService.updateStatusOfTheUser(userProductId, "결제 완료");
 			
 			resultMap.put("result", "success");
 		}
