@@ -111,7 +111,7 @@ public class BuyService
 		
 		for(UserProduct item : userProductList)
 		{
-			int userProductId  = item.getId();	
+			int userProductId  = item.getId();
 			
 			ProductList productListItem = userOrderListRepository.findByUserProductId(userProductId);
 			
@@ -121,6 +121,7 @@ public class BuyService
 			Product product = adminService.getProduct(productId);
 			
 			NormalUserView normalUserView = NormalUserView.builder() 
+			.userProductId(userProductId)
 			.productName(product.getName())
 			.name(product.getName())
 			.imagePath(product.getImagePath())
@@ -133,6 +134,31 @@ public class BuyService
 		return normalUserViewList;
 	}
 	
+	public List<UserProductView> searchListAll()
+	{
+		List<UserProduct> userProductList = userOrderRepository.findAll();
+		List<UserProductView> userProductViewList = new ArrayList<>();
+		
+		for(UserProduct item : userProductList)
+		{
+			int userProductId = item.getId();
+			int userId = item.getUserId();
+			
+			String status = item.getStatus();
+			
+			UserProductView userProductView = UserProductView.builder()
+			.userId(userId)
+			.name(item.getName())
+			.phoneNumber(item.getPhoneNumber())
+			.address(item.getAddress())
+			.status(status)
+			.build();
+			
+			userProductViewList.add(userProductView);
+		}
+		return userProductViewList;
+	}
+	
 	public UserProduct updateStatusOfTheUser(int userProductId, String status)
 	{
 		Optional<UserProduct> optionalUserProduct = userOrderRepository.findById(userProductId);
@@ -143,5 +169,21 @@ public class BuyService
 		userProduct = userOrderRepository.save(userProduct);
 		
 		return userProduct;
+	}
+	
+	public boolean deleteUserProduct(int userProductId)
+	{
+		Optional<UserProduct> optionalUserProduct = userOrderRepository.findById(userProductId);
+		UserProduct userProduct = optionalUserProduct.orElse(null);
+		
+		if(userProduct != null)
+		{
+			userOrderRepository.delete(userProduct);
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
 	}
 }

@@ -55,6 +55,11 @@ public class ShoppingCartService
 		List<ShoppingCart> shoppingCartList = shoppingCartRepository.findAllByUserIdOrderByIdDesc(userId);
 		List<ShoppingCartView> cartList = new ArrayList<>();
 		
+		if(shoppingCartList.isEmpty())
+		{
+			return cartList;
+		}
+		
 		for(ShoppingCart item : shoppingCartList)
 		{			
 			int productId = item.getProductId(); // ShoppingCartList에는 productId가 존재하므로 Product클래스를 가져오기 위한 id를 가져온다.
@@ -74,7 +79,6 @@ public class ShoppingCartService
 			
 			cartList.add(view);
 		}
-	    
 	    return cartList;
 	}
 	

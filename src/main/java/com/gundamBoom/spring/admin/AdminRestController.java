@@ -77,16 +77,16 @@ public class AdminRestController
 		@RequestParam("name") String name,
 		@RequestParam("menufacturer") String menufacturer,
 		@RequestParam("price") String price,
-		@RequestParam("imageFile") MultipartFile imageFile,
+		@RequestParam("imageFile") String imageFile,
 		@RequestParam("category") String category,
 		@RequestParam("division") String division
 	)
 	{
-		boolean isHaving = adminService.updateProduct(productId, name, menufacturer, price, imageFile, category, division);
+		Product isHaving = adminService.updateProduct(productId, name, menufacturer, price, imageFile, category, division);
 		
 		Map<String, String> resultMap = new HashMap<>();
 		
-		if(isHaving == true)
+		if(isHaving != null)
 		{
 			resultMap.put("result", "success");
 		}

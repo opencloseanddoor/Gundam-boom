@@ -7,6 +7,7 @@ import lombok.Getter;
 @Getter
 public class NormalUserView
 {
+	private int userProductId;
 	private int productId;
 	private String name;
 	private String productName;

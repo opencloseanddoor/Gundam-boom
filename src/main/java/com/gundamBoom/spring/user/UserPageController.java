@@ -38,6 +38,7 @@ public class UserPageController
 		
 		List<NormalUserView> normalUserViewList = buyService.searchUserProduct(userId);
 		
+		model.addAttribute("userId", userId);
 		model.addAttribute("normalUserViewList", normalUserViewList);
 		
 		return "basic/userPage";
