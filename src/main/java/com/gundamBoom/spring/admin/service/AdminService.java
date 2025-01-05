@@ -10,23 +10,19 @@ import org.springframework.web.multipart.MultipartFile;
 import com.gundamBoom.spring.admin.domain.Product;
 import com.gundamBoom.spring.admin.dto.ProductView;
 import com.gundamBoom.spring.admin.repository.AdminRepository;
-import com.gundamBoom.spring.admin.repository.ProductRepository;
 import com.gundamBoom.spring.common.FileManager;
 
 @Service
 public class AdminService 
 {
 	private AdminRepository adminRepository;
-	private ProductRepository productRepository;
 	
 	public AdminService
 	(
-		AdminRepository adminRepository,
-		ProductRepository productRepository
+		AdminRepository adminRepository
 	)
 	{
 		this.adminRepository = adminRepository;
-		this.productRepository = productRepository;
 	}
 	
 	public Product insertProduct
@@ -121,28 +117,32 @@ public class AdminService
 		}
 	}
 	
-	public boolean updateProduct
+	public Product updateProduct
 	(
 			int productId,
 			String name,
 			String menufacturer,
 			String price, 
-			MultipartFile imageFile,
+			String imageFile,
 			String category,
 			String division
 	)
 	{
-		int count = productRepository.productUpdate(productId, name, menufacturer, price, imageFile, category, division);
+		Optional<Product> optionalProduct = adminRepository.findById(productId);
+		Product product = optionalProduct.orElse(null);
 		
-		if(count == 1)
-		{
-			return true;
-		}
+		product = product.toBuilder()
+		.name(name)
+		.menufacturer(menufacturer)
+		.price(price)
+		.imagePath(imageFile)
+		.category(category)
+		.division(division)
+		.build();
 		
-		else
-		{
-			return false;
-		}
+		product = adminRepository.save(product);
+		
+		return product;
 	}
 	
 	public Product getProduct(int productId)

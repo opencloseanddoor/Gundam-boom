@@ -9,4 +9,8 @@ import com.gundamBoom.spring.buy.domain.ProductList;
 public interface UserOrderListRepository extends JpaRepository<ProductList, Integer> 
 {
 	public List<ProductList> findAllByProductId(int productId);
+	
+	public ProductList findByUserProductId(int userProductId);
+	
+	public List<ProductList> findAllByUserProductId(int userProductId);
 }

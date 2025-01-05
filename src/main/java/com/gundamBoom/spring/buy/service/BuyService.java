@@ -2,17 +2,15 @@ package com.gundamBoom.spring.buy.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.gundamBoom.spring.admin.domain.Product;
-import com.gundamBoom.spring.admin.dto.ProductView;
 import com.gundamBoom.spring.admin.service.AdminService;
 import com.gundamBoom.spring.buy.domain.ProductList;
-import com.gundamBoom.spring.buy.domain.ShoppingCart;
 import com.gundamBoom.spring.buy.domain.UserProduct;
-import com.gundamBoom.spring.buy.dto.ProductListView;
-import com.gundamBoom.spring.buy.dto.ShoppingCartView;
+import com.gundamBoom.spring.buy.dto.NormalUserView;
 import com.gundamBoom.spring.buy.dto.UserProductView;
 import com.gundamBoom.spring.buy.repository.ShoppingCartRepository;
 import com.gundamBoom.spring.buy.repository.UserOrderListRepository;
@@ -23,7 +21,6 @@ public class BuyService
 {
 	private UserOrderRepository userOrderRepository;
 	private UserOrderListRepository userOrderListRepository;
-	private ShoppingCartRepository shoppingCartRepository;
 	private AdminService adminService;
 	
 	public BuyService
@@ -36,7 +33,6 @@ public class BuyService
 	{
 		this.userOrderRepository = userOrderRepository;
 		this.userOrderListRepository = userOrderListRepository;
-		this.shoppingCartRepository = shoppingCartRepository;
 		this.adminService = adminService;
 	}
 	
@@ -84,49 +80,7 @@ public class BuyService
 	
 	public UserProduct findUserProduct(int userId)
 	{
-		return userOrderRepository.findByUserId(userId);
-	}
-	
-	public ShoppingCart addShoppingCartListService
-	(
-		int productId,
-		int userId,
-		int count
-	)
-	{
-		ShoppingCart shoppingCart = ShoppingCart
-				.builder()
-				.productId(productId)
-				.userId(userId)
-				.count(count)
-				.build();
-		
-		ShoppingCart result = shoppingCartRepository.save(shoppingCart);
-		
-		return result;
-	}
-	
-	public List<ShoppingCartView> searchShoppingCartList
-	(
-		int userId
-	)
-	{
-		List<ShoppingCart> shoppingCartList = shoppingCartRepository.findAllByUserId(userId);
-		List<ShoppingCartView> shoppingCartListView = new ArrayList<>();
-		
-		for(ShoppingCart item : shoppingCartList)
-		{
-			ShoppingCartView cart = ShoppingCartView
-					.builder()
-					.productId(item.getProductId())
-					.userId(item.getUserId())
-					.count(item.getCount())
-					.build();
-			
-			shoppingCartListView.add(cart);
-		}
-		
-		return shoppingCartListView;
+		return userOrderRepository.findTopByUserIdOrderByIdDesc(userId);
 	}
 	
 	public List<UserProductView> searchListByUserProduct(int userId)
@@ -148,5 +102,88 @@ public class BuyService
 		}
 		
 		return userProductListView;
+	}
+	
+	public List<NormalUserView> searchUserProduct(int userId)
+	{
+		List<UserProduct> userProductList = userOrderRepository.findAllByUserIdOrderByIdDesc(userId);
+		List<NormalUserView> normalUserViewList = new ArrayList<>();
+		
+		for(UserProduct item : userProductList)
+		{
+			int userProductId  = item.getId();
+			
+			ProductList productListItem = userOrderListRepository.findByUserProductId(userProductId);
+			
+			int productId = productListItem.getProductId();
+			int count = productListItem.getCount();
+			String status = item.getStatus();
+			Product product = adminService.getProduct(productId);
+			
+			NormalUserView normalUserView = NormalUserView.builder() 
+			.userProductId(userProductId)
+			.productName(product.getName())
+			.name(product.getName())
+			.imagePath(product.getImagePath())
+			.status(status)
+			.count(count)
+			.build();
+			
+			normalUserViewList.add(normalUserView);
+		}
+		return normalUserViewList;
+	}
+	
+	public List<UserProductView> searchListAll()
+	{
+		List<UserProduct> userProductList = userOrderRepository.findAll();
+		List<UserProductView> userProductViewList = new ArrayList<>();
+		
+		for(UserProduct item : userProductList)
+		{
+			int userProductId = item.getId();
+			int userId = item.getUserId();
+			
+			String status = item.getStatus();
+			
+			UserProductView userProductView = UserProductView.builder()
+			.userId(userId)
+			.name(item.getName())
+			.phoneNumber(item.getPhoneNumber())
+			.address(item.getAddress())
+			.status(status)
+			.build();
+			
+			userProductViewList.add(userProductView);
+		}
+		return userProductViewList;
+	}
+	
+	public UserProduct updateStatusOfTheUser(int userProductId, String status)
+	{
+		Optional<UserProduct> optionalUserProduct = userOrderRepository.findById(userProductId);
+		UserProduct userProduct = optionalUserProduct.orElse(null);
+		
+		userProduct = userProduct.toBuilder().status(status).build();
+		
+		userProduct = userOrderRepository.save(userProduct);
+		
+		return userProduct;
+	}
+	
+	public boolean deleteUserProduct(int userProductId)
+	{
+		Optional<UserProduct> optionalUserProduct = userOrderRepository.findById(userProductId);
+		UserProduct userProduct = optionalUserProduct.orElse(null);
+		
+		if(userProduct != null)
+		{
+			userOrderRepository.delete(userProduct);
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
 	}
 }

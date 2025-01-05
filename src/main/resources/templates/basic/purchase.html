@@ -51,11 +51,6 @@
 		{
 			$("#buy-btn").on("click", function()
 			{
-				/*
-					아래의 코드들은 주문 기능을 작성을 할 때 참고해야합니다 삭제하지 말아주세요.
-					let loginId = $("#loginId").text();
-					alert(loginId);
-				*/
 				let productId = $(this).data("id");
 				location.href="/buy/orderPage-view/" + productId;
 			});
@@ -67,7 +62,7 @@
 				$.ajax
 				({
 					type:"post",
-					url:"/buy/shoppingCartRest",
+					url:"/shoppingCart/shoppingCartAdd",
 					data:{"productId":productId, "count":count},
 					success:function(data)
 					{

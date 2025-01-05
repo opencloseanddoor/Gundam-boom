@@ -52,7 +52,7 @@
 				</div>
 			
 				<div class="order-list-btn">
-					<button type="button" id="order-list-view-btn" class="ml-3 btn btn-primary">고객주문목록</button>		
+					<button type="button" th:data-id="${session.userId}" id="order-list-view-btn" class="ml-3 btn btn-primary">고객주문목록</button>		
 				</div>
 			</div>
 			
@@ -64,7 +64,7 @@
 		{
 			$("#order-list-view-btn").on("click", function()
 			{
-				location.href="/buy/order-list-view";	
+				location.href="/buy/order-list-view";
 			});
 			
 			$("#add-btn").on("click", function()

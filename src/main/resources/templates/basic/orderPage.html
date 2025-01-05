@@ -43,17 +43,14 @@
       
       <script layout:fragment="script">
       	$(document).ready(function()
-      	{
-      		const IMP = window.IMP;
-            IMP.init('imp00065124'); // 아임포트 키 입력
-            
+      	{            
       		$("#buy-btn").on("click", function()
       		{
       			let loginId = "";
       			let name = $("#name-input").val();
       			let address = $("#address-input").val();
       			let phoneNumber = $("#phoneNumber-input").val();
-      			let status = "결제중";
+      			let status = "결제 중";
       			let productId = $(this).data("id");
       			
       			if(name == "")

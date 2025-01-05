@@ -277,9 +277,14 @@ header > .move-to-administrator-page
 	width: 1200px;
 }
 
-.default-content > .user-order-list-area /* 관리자가 사용자가 주문한 주문 목록들을 표시하기 위한 값입니다 */
+.default-content > .user-order-list-area /* 관리자가 사용자가 주문한 주문 목록들을 표시하기 위한 영역입니다 */
 {
 	 width: 1200px;
+}
+
+.default-content > .user-page-area /* 사용자가 주문한 주문 목록을 표시하기 위한 영역입니다 */
+{
+	width:1200px;
 }
 
 footer

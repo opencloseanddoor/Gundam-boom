@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class UserProductView 
+public class UserProductView //관리자 전용 DTO
 {
 	private int  userId;
 	private String status;
